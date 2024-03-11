@@ -10,5 +10,15 @@ public class Main {
         // ウィンドウサイズを固定
         window.setResizable(false);
         window.setTitle("2D DQ");
+
+        GamePanel gamePanel = new GamePanel();
+        window.add(gamePanel);
+
+        window.pack();
+
+        //ウィンドウがスクリーンの中央に固定
+        window.setLocationRelativeTo(null);
+        // ウィンドウが画面に表示されるようになる
+        window.setVisible(true);
     }
 }
