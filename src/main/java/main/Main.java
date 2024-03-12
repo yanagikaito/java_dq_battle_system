@@ -20,5 +20,7 @@ public class Main {
         window.setLocationRelativeTo(null);
         // ウィンドウが画面に表示されるようになる
         window.setVisible(true);
+
+        gamePanel.startGameThread();
     }
 }

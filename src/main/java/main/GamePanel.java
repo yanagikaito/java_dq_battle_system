@@ -3,7 +3,7 @@ package main;
 import javax.swing.*;
 import java.awt.*;
 
-public class GamePanel extends JPanel {
+public class GamePanel extends JPanel implements Runnable {
 
     // 16x16のタイル プレイヤーやNPC,背景などのサイズ
     private final int originalTileSize = 16;
@@ -32,6 +32,8 @@ public class GamePanel extends JPanel {
     // FPS
     private int FPS = 60;
 
+    private Thread gameThread;
+
     public GamePanel() {
 
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -41,5 +43,18 @@ public class GamePanel extends JPanel {
         this.setDoubleBuffered(true);
 
         this.setFocusable(true);
+    }
+
+    public void startGameThread() {
+
+        gameThread = new Thread(this);
+        // runメソッドが自動的に呼ばれる
+        gameThread.start();
+
+    }
+
+    @Override
+    public void run() {
+
     }
 }
