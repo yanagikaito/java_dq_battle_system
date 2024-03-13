@@ -1,5 +1,7 @@
 package main;
 
+import main.ui.BattleScreen;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -33,6 +35,12 @@ public class GamePanel extends JPanel implements Runnable {
     private int FPS = 60;
 
     private Thread gameThread;
+
+    private int gameState;
+
+    private final int battleState = 0;
+
+    private BattleScreen battleScreen = new BattleScreen(this);
 
     public GamePanel() {
 
@@ -96,5 +104,31 @@ public class GamePanel extends JPanel implements Runnable {
         super.paintComponent(g);
         //  GraphicsをGraphics2Dに変換したことを意味している
         Graphics2D g2 = (Graphics2D) g;
+
+        // スクリーンタイトル
+        if (gameState == battleState) {
+            battleScreen.draw(g2);
+
+        }
+    }
+
+    public int getTileSize() {
+        return tileSize;
+    }
+
+    public int getGameState() {
+        return gameState;
+    }
+
+    public int getBattleState() {
+        return battleState;
+    }
+
+    public int getScreenWidth() {
+        return screenWidth;
+    }
+
+    public int getScreenHeight() {
+        return screenHeight;
     }
 }
