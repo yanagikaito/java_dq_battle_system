@@ -39,6 +39,7 @@ public class BattleScreen {
         if (gamePanel.getGameState() == gamePanel.getBattleState()) {
             drawBattleScreen();
             drawDialogueScreen();
+            drawCommandScreen();
         }
     }
 
@@ -52,14 +53,20 @@ public class BattleScreen {
 
             graphics2D.setFont(graphics2D.getFont().deriveFont(Font.BOLD, 60F));
             String playerText = "勇者 HP100";
+            String playerCommandText = "たたかう";
             int x = getXforCenteredText(playerText);
             int y = gamePanel.getTileSize() * 3;
 
+            int commandX = getXforCenteredText(playerText);
+            int commandY = gamePanel.getTileSize() * 8;
+
             graphics2D.setColor(Color.white);
-            // 文字列とxをyに描画します。
+            // 文字列をxとyに描画する。
             graphics2D.drawString(playerText, x, y);
+            graphics2D.drawString(playerCommandText, commandX, commandY);
         }
     }
+
 
     public void drawDialogueScreen() {
 
@@ -70,6 +77,26 @@ public class BattleScreen {
         int height = gamePanel.getTileSize() * 4;
 
         drawSubWindow(x, y, width, height);
+
+        graphics2D.setFont(graphics2D.getFont().deriveFont(Font.PLAIN, 28F));
+        x += gamePanel.getTileSize();
+        y += gamePanel.getTileSize();
+
+        for (String line : currentDialogue.split("\n")) {
+            graphics2D.drawString(line, x, y);
+            y += 40;
+        }
+    }
+
+    public void drawCommandScreen() {
+
+        // ウィンドウ
+        int x = gamePanel.getTileSize() * 2;
+        int y = gamePanel.getTileSize() * 6;
+        int width = gamePanel.getScreenWidth() - (gamePanel.getTileSize() * 4);
+        int height = gamePanel.getTileSize() * 4;
+
+        drawCommandWindow(x, y, width, height);
 
         graphics2D.setFont(graphics2D.getFont().deriveFont(Font.PLAIN, 28F));
         x += gamePanel.getTileSize();
@@ -98,6 +125,21 @@ public class BattleScreen {
         c = new Color(255, 255, 255);
         graphics2D.setColor(c);
         // width - BasicStrokeの幅。
+        graphics2D.setStroke(new BasicStroke(5));
+        graphics2D.drawRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
+
+    }
+
+    public void drawCommandWindow(int x, int y, int width, int height) {
+
+        Color c = new Color(0, 0, 0, 0);
+        graphics2D.setColor(c);
+
+        graphics2D.fillRoundRect(x, y, width, height, 35, 35);
+
+        c = new Color(255, 255, 255);
+        graphics2D.setColor(c);
+
         graphics2D.setStroke(new BasicStroke(5));
         graphics2D.drawRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
 
