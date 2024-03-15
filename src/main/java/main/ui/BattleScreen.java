@@ -51,19 +51,27 @@ public class BattleScreen {
             graphics2D.setColor(new Color(0, 0, 0));
             graphics2D.fillRect(0, 0, gamePanel.getScreenWidth(), gamePanel.getScreenHeight());
 
-            graphics2D.setFont(graphics2D.getFont().deriveFont(Font.BOLD, 60F));
-            String playerText = "勇者 HP100";
-            String playerCommandText = "たたかう";
-            int x = getXforCenteredText(playerText);
-            int y = gamePanel.getTileSize() * 3;
+            graphics2D.setFont(graphics2D.getFont().deriveFont(Font.BOLD, 48F));
 
-            int commandX = getXforCenteredText(playerText);
-            int commandY = gamePanel.getTileSize() * 8;
+            String playerText = "勇者 HP100";
+            String playerCommandBattle = "たたかう";
+            String playerCommandFlee = "にげる";
+
+            int playerTextX = getXforCenteredText(playerText);
+            int playerTextY = gamePanel.getTileSize() * 3;
+
+            int commandBattleX = gamePanel.getTileSize() * 2;
+            int commandBattleY = gamePanel.getTileSize() * 9;
+
+            int commandFleeX = gamePanel.getTileSize() * 2;
+            int commandFleeY = gamePanel.getTileSize() * 11;
 
             graphics2D.setColor(Color.white);
+
             // 文字列をxとyに描画する。
-            graphics2D.drawString(playerText, x, y);
-            graphics2D.drawString(playerCommandText, commandX, commandY);
+            graphics2D.drawString(playerText, playerTextX, playerTextY);
+            graphics2D.drawString(playerCommandBattle, commandBattleX, commandBattleY);
+            graphics2D.drawString(playerCommandFlee, commandFleeX, commandFleeY);
         }
     }
 
@@ -91,9 +99,9 @@ public class BattleScreen {
     public void drawCommandScreen() {
 
         // ウィンドウ
-        int x = gamePanel.getTileSize() * 2;
-        int y = gamePanel.getTileSize() * 6;
-        int width = gamePanel.getScreenWidth() - (gamePanel.getTileSize() * 4);
+        int x = gamePanel.getTileSize();
+        int y = gamePanel.getTileSize() * 8;
+        int width = gamePanel.getScreenWidth() - (gamePanel.getTileSize() * 10);
         int height = gamePanel.getTileSize() * 4;
 
         drawCommandWindow(x, y, width, height);
