@@ -109,7 +109,7 @@ public class GamePanel extends JPanel implements Runnable {
         //  GraphicsをGraphics2Dに変換したことを意味している
         Graphics2D g2 = (Graphics2D) g;
 
-        // スクリーンタイトル
+        // 戦闘画面表示
         if (gameState == battleState) {
             battleScreen.draw(g2);
 
@@ -135,6 +135,7 @@ public class GamePanel extends JPanel implements Runnable {
     public int getScreenHeight() {
         return screenHeight;
     }
+
     public BattleScreen getBattleScreen() {
         return battleScreen;
     }
