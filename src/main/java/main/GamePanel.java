@@ -42,6 +42,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     private BattleScreen battleScreen = new BattleScreen(this);
 
+    private KeyHandler keyHandler = new KeyHandler(this);
+
     public GamePanel() {
 
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -49,6 +51,8 @@ public class GamePanel extends JPanel implements Runnable {
         this.setBackground(Color.BLACK);
 
         this.setDoubleBuffered(true);
+
+        this.addKeyListener(keyHandler);
 
         this.setFocusable(true);
     }
@@ -130,5 +134,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     public int getScreenHeight() {
         return screenHeight;
+    }
+    public BattleScreen getBattleScreen() {
+        return battleScreen;
     }
 }

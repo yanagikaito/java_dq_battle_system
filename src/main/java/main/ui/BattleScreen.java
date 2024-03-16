@@ -17,6 +17,8 @@ public class BattleScreen {
 
     private String currentDialogue = "";
 
+    private int commandNum = 0;
+
     public BattleScreen(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
         // ゲームループが開始する前にインスタンス化を完了できるようにする。
@@ -56,6 +58,8 @@ public class BattleScreen {
             String playerText = "勇者 HP100";
             String playerCommandBattle = "たたかう";
             String playerCommandFlee = "にげる";
+            String selectCommandBattle = ">";
+            String selectCommandFlee = ">";
 
             int playerTextX = getXforCenteredText(playerText);
             int playerTextY = gamePanel.getTileSize() * 3;
@@ -66,15 +70,26 @@ public class BattleScreen {
             int commandFleeX = gamePanel.getTileSize() * 2;
             int commandFleeY = gamePanel.getTileSize() * 11;
 
+            int playerSelectCommandBattleX = gamePanel.getTileSize() + 28;
+            int playerSelectCommandBattleY = gamePanel.getTileSize() * 9;
+
+            int playerSelectCommandFleeX = gamePanel.getTileSize() + 28;
+            int playerSelectCommandFleeY = gamePanel.getTileSize() * 11;
+
             graphics2D.setColor(Color.white);
 
             // 文字列をxとyに描画する。
             graphics2D.drawString(playerText, playerTextX, playerTextY);
             graphics2D.drawString(playerCommandBattle, commandBattleX, commandBattleY);
             graphics2D.drawString(playerCommandFlee, commandFleeX, commandFleeY);
+            if (commandNum == 0) {
+                graphics2D.drawString(selectCommandBattle, playerSelectCommandBattleX, playerSelectCommandBattleY);
+            }
+            if (commandNum == 1) {
+                graphics2D.drawString(selectCommandFlee, playerSelectCommandFleeX, playerSelectCommandFleeY);
+            }
         }
     }
-
 
     public void drawDialogueScreen() {
 
@@ -157,5 +172,13 @@ public class BattleScreen {
         int length = (int) graphics2D.getFontMetrics().getStringBounds(text, graphics2D).getWidth();
         int x = gamePanel.getScreenWidth() / 2 - length / 2;
         return x;
+    }
+
+    public int getCommandNum() {
+        return commandNum;
+    }
+
+    public int setCommandNum(int commandNum) {
+        return this.commandNum = commandNum;
     }
 }
