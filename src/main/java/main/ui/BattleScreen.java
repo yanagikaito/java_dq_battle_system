@@ -62,7 +62,7 @@ public class BattleScreen {
             String selectCommandFlee = ">";
 
             int playerTextX = getXforCenteredText(playerText);
-            int playerTextY = gamePanel.getTileSize() * 3;
+            int playerTextY = gamePanel.getTileSize() * 2;
 
             int commandBattleX = gamePanel.getTileSize() * 2;
             int commandBattleY = gamePanel.getTileSize() * 9;
@@ -97,7 +97,7 @@ public class BattleScreen {
         int x = gamePanel.getTileSize() * 2;
         int y = gamePanel.getTileSize() / 2;
         int width = gamePanel.getScreenWidth() - (gamePanel.getTileSize() * 4);
-        int height = gamePanel.getTileSize() * 4;
+        int height = gamePanel.getTileSize() * 2;
 
         drawSubWindow(x, y, width, height);
 
