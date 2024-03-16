@@ -53,9 +53,10 @@ public class BattleScreen {
             graphics2D.setColor(new Color(0, 0, 0));
             graphics2D.fillRect(0, 0, gamePanel.getScreenWidth(), gamePanel.getScreenHeight());
 
-            graphics2D.setFont(graphics2D.getFont().deriveFont(Font.BOLD, 48F));
+            graphics2D.setFont(graphics2D.getFont().deriveFont(Font.BOLD, 45F));
 
-            String playerText = "勇者 HP100";
+            String playerText = "勇者";
+            String playerHpText = "HP100";
             String playerCommandBattle = "たたかう";
             String playerCommandFlee = "にげる";
             String selectCommandBattle = ">";
@@ -63,6 +64,9 @@ public class BattleScreen {
 
             int playerTextX = getXforCenteredText(playerText);
             int playerTextY = gamePanel.getTileSize() * 2;
+
+            int playerHpTextX = gamePanel.getTileSize() * 2;
+            int playerHpTextY = gamePanel.getTileSize() * 3;
 
             int commandBattleX = gamePanel.getTileSize() * 2;
             int commandBattleY = gamePanel.getTileSize() * 9;
@@ -80,6 +84,7 @@ public class BattleScreen {
 
             // 文字列をxとyに描画する。
             graphics2D.drawString(playerText, playerTextX, playerTextY);
+            graphics2D.drawString(playerHpText, playerHpTextX, playerHpTextY);
             graphics2D.drawString(playerCommandBattle, commandBattleX, commandBattleY);
             graphics2D.drawString(playerCommandFlee, commandFleeX, commandFleeY);
             if (commandNum == 0) {
@@ -94,10 +99,10 @@ public class BattleScreen {
     public void drawDialogueScreen() {
 
         // ウィンドウ
-        int x = gamePanel.getTileSize() * 2;
+        int x = gamePanel.getTileSize();
         int y = gamePanel.getTileSize() / 2;
-        int width = gamePanel.getScreenWidth() - (gamePanel.getTileSize() * 4);
-        int height = gamePanel.getTileSize() * 2;
+        int width = gamePanel.getScreenWidth() - (gamePanel.getTileSize() * 11);
+        int height = gamePanel.getTileSize() * 3;
 
         drawSubWindow(x, y, width, height);
 
@@ -170,7 +175,7 @@ public class BattleScreen {
 
     public int getXforCenteredText(String text) {
         int length = (int) graphics2D.getFontMetrics().getStringBounds(text, graphics2D).getWidth();
-        int x = gamePanel.getScreenWidth() / 2 - length / 2;
+        int x = gamePanel.getScreenWidth() / 6 - length / 6;
         return x;
     }
 
