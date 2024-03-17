@@ -119,12 +119,12 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
-    public void paintComponent(Graphics graphics) {
+    public void paintComponent(Graphics g) {
 
         // superというのはこのクラスの親クラスこの場合JPanelとなる
-        super.paintComponent(graphics);
+        super.paintComponent(g);
         //  GraphicsをGraphics2Dに変換したことを意味している
-        Graphics2D g2 = (Graphics2D) graphics;
+        Graphics2D g2 = (Graphics2D) g;
 
         // 戦闘画面表示
         if (gameState == battleState) {
