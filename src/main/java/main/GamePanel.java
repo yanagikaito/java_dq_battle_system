@@ -1,5 +1,6 @@
 package main;
 
+import main.monster.GreenSlime;
 import main.ui.BattleScreen;
 
 import javax.swing.*;
@@ -14,7 +15,7 @@ public class GamePanel extends JPanel implements Runnable {
     private final int scale = 3;
 
     // 48x48のタイル
-    private final int tileSize = originalTileSize * scale;
+    private int tileSize = originalTileSize * scale;
 
     // 水平に16　垂直に12
     // 画面比率は 4 : 3
@@ -44,6 +45,10 @@ public class GamePanel extends JPanel implements Runnable {
 
     private KeyHandler keyHandler = new KeyHandler(this);
 
+    public GreenSlime[] monsterGreenSlime = new GreenSlime[10];
+
+    public AssetSetter assetSetter = new AssetSetter(this);
+
     public GamePanel() {
 
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
@@ -55,6 +60,13 @@ public class GamePanel extends JPanel implements Runnable {
         this.addKeyListener(keyHandler);
 
         this.setFocusable(true);
+    }
+
+    public void setupGame() {
+
+        assetSetter.setMonster();
+
+        gameState = battleState;
     }
 
     public void startGameThread() {
@@ -100,24 +112,38 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update() {
 
+        for (int i = 0; i < monsterGreenSlime.length; i++) {
+            if (monsterGreenSlime[i] != null) {
+                monsterGreenSlime[i].update();
+            }
+        }
     }
 
-    public void paintComponent(Graphics g) {
+    public void paintComponent(Graphics graphics) {
 
         // superというのはこのクラスの親クラスこの場合JPanelとなる
-        super.paintComponent(g);
+        super.paintComponent(graphics);
         //  GraphicsをGraphics2Dに変換したことを意味している
-        Graphics2D g2 = (Graphics2D) g;
+        Graphics2D g2 = (Graphics2D) graphics;
 
         // 戦闘画面表示
         if (gameState == battleState) {
             battleScreen.draw(g2);
-
+        }
+        for (GreenSlime greenSlime : monsterGreenSlime) {
+            if (greenSlime != null) {
+                greenSlime.draw(g2, this);
+            }
         }
     }
 
+
     public int getTileSize() {
         return tileSize;
+    }
+
+    public int setTileSize(int tileSize) {
+        return this.tileSize = tileSize;
     }
 
     public int getGameState() {
@@ -139,4 +165,5 @@ public class GamePanel extends JPanel implements Runnable {
     public BattleScreen getBattleScreen() {
         return battleScreen;
     }
+
 }

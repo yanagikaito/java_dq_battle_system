@@ -21,6 +21,7 @@ public class Main {
         // ウィンドウが画面に表示されるようになる
         window.setVisible(true);
 
+        gamePanel.setupGame();
         gamePanel.startGameThread();
     }
 }
