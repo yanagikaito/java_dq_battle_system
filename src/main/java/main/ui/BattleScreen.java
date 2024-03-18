@@ -93,6 +93,33 @@ public class BattleScreen {
             if (commandNum == 1) {
                 graphics2D.drawString(selectCommandFlee, playerSelectCommandFleeX, playerSelectCommandFleeY);
             }
+        } else if (battleScreenState == 1) {
+
+            graphics2D.setFont(graphics2D.getFont().deriveFont(Font.BOLD, 45F));
+
+            String playerText = "勇者";
+            String playerHpText = "HP100";
+            String playerCommandAttack = "こうげき";
+            String selectCommandAttack = ">";
+
+            int playerTextX = getXforCenteredText(playerText);
+            int playerTextY = gamePanel.getTileSize() * 2;
+
+            int playerHpTextX = gamePanel.getTileSize() * 2;
+            int playerHpTextY = gamePanel.getTileSize() * 3;
+
+            int commandAttackX = gamePanel.getTileSize() * 2;
+            int commandAttackY = gamePanel.getTileSize() * 9;
+
+            int playerSelectCommandAttackX = gamePanel.getTileSize() + 28;
+            int playerSelectCommandAttackY = gamePanel.getTileSize() * 9;
+
+            graphics2D.setColor(Color.white);
+
+            graphics2D.drawString(playerText, playerTextX, playerTextY);
+            graphics2D.drawString(playerHpText, playerHpTextX, playerHpTextY);
+            graphics2D.drawString(playerCommandAttack, commandAttackX, commandAttackY);
+            graphics2D.drawString(selectCommandAttack, playerSelectCommandAttackX, playerSelectCommandAttackY);
         }
     }
 
@@ -185,5 +212,13 @@ public class BattleScreen {
 
     public int setCommandNum(int commandNum) {
         return this.commandNum = commandNum;
+    }
+
+    public int getBattleScreenState() {
+        return battleScreenState;
+    }
+
+    public int setBattleScreenState(int battleScreenState) {
+        return this.battleScreenState = battleScreenState;
     }
 }
