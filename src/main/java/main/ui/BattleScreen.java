@@ -53,7 +53,7 @@ public class BattleScreen {
             graphics2D.setColor(new Color(0, 0, 0));
             graphics2D.fillRect(0, 0, gamePanel.getScreenWidth(), gamePanel.getScreenHeight());
 
-            graphics2D.setFont(graphics2D.getFont().deriveFont(Font.BOLD, 45F));
+            graphics2D.setFont(graphics2D.getFont().deriveFont(Font.BOLD, 40F));
 
             String playerText = "勇者";
             String playerHpText = "HP100";
@@ -65,19 +65,19 @@ public class BattleScreen {
             int playerTextX = getXforCenteredText(playerText);
             int playerTextY = gamePanel.getTileSize() * 2;
 
-            int playerHpTextX = gamePanel.getTileSize() * 2;
+            int playerHpTextX = gamePanel.getTileSize();
             int playerHpTextY = gamePanel.getTileSize() * 3;
 
-            int commandBattleX = gamePanel.getTileSize() * 2;
+            int commandBattleX = gamePanel.getTileSize();
             int commandBattleY = gamePanel.getTileSize() * 9;
 
-            int commandFleeX = gamePanel.getTileSize() * 2;
+            int commandFleeX = gamePanel.getTileSize();
             int commandFleeY = gamePanel.getTileSize() * 11;
 
-            int playerSelectCommandBattleX = gamePanel.getTileSize() + 28;
+            int playerSelectCommandBattleX = gamePanel.getTileSize() - 24;
             int playerSelectCommandBattleY = gamePanel.getTileSize() * 9;
 
-            int playerSelectCommandFleeX = gamePanel.getTileSize() + 28;
+            int playerSelectCommandFleeX = gamePanel.getTileSize() - 24;
             int playerSelectCommandFleeY = gamePanel.getTileSize() * 11;
 
             graphics2D.setColor(Color.white);
@@ -95,7 +95,7 @@ public class BattleScreen {
             }
         } else if (battleScreenState == 1) {
 
-            graphics2D.setFont(graphics2D.getFont().deriveFont(Font.BOLD, 45F));
+            graphics2D.setFont(graphics2D.getFont().deriveFont(Font.BOLD, 40F));
 
             String playerText = "勇者";
             String playerHpText = "HP100";
@@ -105,13 +105,13 @@ public class BattleScreen {
             int playerTextX = getXforCenteredText(playerText);
             int playerTextY = gamePanel.getTileSize() * 2;
 
-            int playerHpTextX = gamePanel.getTileSize() * 2;
+            int playerHpTextX = gamePanel.getTileSize();
             int playerHpTextY = gamePanel.getTileSize() * 3;
 
-            int commandAttackX = gamePanel.getTileSize() * 2;
+            int commandAttackX = gamePanel.getTileSize();
             int commandAttackY = gamePanel.getTileSize() * 9;
 
-            int playerSelectCommandAttackX = gamePanel.getTileSize() + 28;
+            int playerSelectCommandAttackX = gamePanel.getTileSize() - 24;
             int playerSelectCommandAttackY = gamePanel.getTileSize() * 9;
 
             graphics2D.setColor(Color.white);
@@ -126,9 +126,9 @@ public class BattleScreen {
     public void drawDialogueScreen() {
 
         // ウィンドウ
-        int x = gamePanel.getTileSize();
+        int x = gamePanel.getTileSize() - 30;
         int y = gamePanel.getTileSize() / 2;
-        int width = gamePanel.getScreenWidth() - (gamePanel.getTileSize() * 11);
+        int width = gamePanel.getScreenWidth() - (gamePanel.getTileSize() * 12);
         int height = gamePanel.getTileSize() * 3;
 
         drawSubWindow(x, y, width, height);
@@ -146,9 +146,9 @@ public class BattleScreen {
     public void drawCommandScreen() {
 
         // ウィンドウ
-        int x = gamePanel.getTileSize();
+        int x = gamePanel.getTileSize() - 30;
         int y = gamePanel.getTileSize() * 8;
-        int width = gamePanel.getScreenWidth() - (gamePanel.getTileSize() * 10);
+        int width = gamePanel.getScreenWidth() - (gamePanel.getTileSize() * 11);
         int height = gamePanel.getTileSize() * 4;
 
         drawCommandWindow(x, y, width, height);
@@ -202,7 +202,7 @@ public class BattleScreen {
 
     public int getXforCenteredText(String text) {
         int length = (int) graphics2D.getFontMetrics().getStringBounds(text, graphics2D).getWidth();
-        int x = gamePanel.getScreenWidth() / 6 - length / 6;
+        int x = gamePanel.getScreenWidth() / 12 - length / 6;
         return x;
     }
 
