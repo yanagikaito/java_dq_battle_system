@@ -39,6 +39,12 @@ public class KeyHandler implements KeyListener {
             // コマンド番号 コマンド番号がゼロの場合、次のコマンドを選択します。
             if (gamePanel.getBattleScreen().getCommandNum() == 0) {
                 gamePanel.getBattleScreen().setBattleScreenState(1);
+                if (gamePanel.getBattleScreen().getCommandNum() < 0) {
+                    gamePanel.getBattleScreen().setCommandNum(3);
+                }
+                if (gamePanel.getBattleScreen().getCommandNum() > 3) {
+                    gamePanel.getBattleScreen().setCommandNum(0);
+                }
             }
         }
 
