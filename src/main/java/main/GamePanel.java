@@ -132,7 +132,7 @@ public class GamePanel extends JPanel implements Runnable {
         }
         for (GreenSlime greenSlime : monsterGreenSlime) {
             if (greenSlime != null) {
-                greenSlime.draw(g2, this);
+                greenSlime.draw(g2);
             }
         }
     }
