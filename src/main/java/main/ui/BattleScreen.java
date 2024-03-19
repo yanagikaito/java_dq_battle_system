@@ -127,7 +127,9 @@ public class BattleScreen {
             String monsterTextA = "グリーンスライムA";
             String monsterTextB = "グリーンスライムB";
             String monsterTextC = "グリーンスライムC";
-            String monsterSelectCommand = ">";
+            String monsterSelectCommandA = ">";
+            String monsterSelectCommandB = ">";
+            String monsterSelectCommandC = ">";
 
             int monsterTextAx = gamePanel.getTileSize() * 7;
             int monsterTextAy = gamePanel.getTileSize() * 9;
@@ -138,15 +140,29 @@ public class BattleScreen {
             int monsterTextCx = gamePanel.getTileSize() * 7;
             int monsterTextCy = gamePanel.getTileSize() * 11;
 
-            int monsterSelectCommandX = gamePanel.getTileSize() - 24;
-            int monsterSelectCommandY = gamePanel.getTileSize() * 9;
+            int monsterSelectCommandAx = gamePanel.getTileSize() + 255;
+            int monsterSelectCommandAy = gamePanel.getTileSize() * 9;
+
+            int monsterSelectCommandBx = gamePanel.getTileSize() + 255;
+            int monsterSelectCommandBy = gamePanel.getTileSize() * 10;
+
+            int monsterSelectCommandCx = gamePanel.getTileSize() + 255;
+            int monsterSelectCommandCy = gamePanel.getTileSize() * 11;
 
             graphics2D.setColor(Color.white);
 
             graphics2D.drawString(monsterTextA, monsterTextAx, monsterTextAy);
             graphics2D.drawString(monsterTextB, monsterTextBx, monsterTextBy);
             graphics2D.drawString(monsterTextC, monsterTextCx, monsterTextCy);
-            graphics2D.drawString(monsterSelectCommand, monsterSelectCommandX, monsterSelectCommandY);
+            if (commandNum == 0) {
+                graphics2D.drawString(monsterSelectCommandA, monsterSelectCommandAx, monsterSelectCommandAy);
+            }
+            if (commandNum == 1) {
+                graphics2D.drawString(monsterSelectCommandB, monsterSelectCommandBx, monsterSelectCommandBy);
+            }
+            if (commandNum == 2) {
+                graphics2D.drawString(monsterSelectCommandC, monsterSelectCommandCx, monsterSelectCommandCy);
+            }
         }
     }
 
