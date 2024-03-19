@@ -45,9 +45,11 @@ public class GreenSlime {
         return worldX;
     }
 
-    public void draw(Graphics2D graphics2D, GamePanel gamePanel) {
+    public void draw(Graphics2D graphics2D) {
         int screenX = 90;
         int screenY = 200;
         graphics2D.drawImage(image, screenX, screenY, gamePanel.getTileSize() * 3, gamePanel.getTileSize() * 3, null);
+        graphics2D.drawImage(image, screenX + 150, screenY, gamePanel.getTileSize() * 3, gamePanel.getTileSize() * 3, null);
+        graphics2D.drawImage(image, screenX + 300, screenY, gamePanel.getTileSize() * 3, gamePanel.getTileSize() * 3, null);
     }
 }
