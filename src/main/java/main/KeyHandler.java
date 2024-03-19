@@ -38,29 +38,29 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_ENTER) {
             // コマンド番号 コマンド番号がゼロの場合、次のコマンドを選択します。
             if (gamePanel.getBattleScreen().getCommandNum() == 0) {
-                // 新しいゲームを選択していることになるので、ゲームの状態を変更します。
-                // キャラクタークラス選択画面に進むことができる。
                 gamePanel.getBattleScreen().setBattleScreenState(1);
             }
+        }
 
-            if (code == KeyEvent.VK_W) {
-                upPressed = true;
 
-            }
-            if (code == KeyEvent.VK_S) {
-                downPressed = true;
-            }
-            if (code == KeyEvent.VK_A) {
-                leftPressed = true;
-            }
-            if (code == KeyEvent.VK_D) {
-                rightPressed = true;
-            }
-            if (code == KeyEvent.VK_ENTER) {
-                enterPressed = true;
-            }
+        if (code == KeyEvent.VK_W) {
+            upPressed = true;
+
+        }
+        if (code == KeyEvent.VK_S) {
+            downPressed = true;
+        }
+        if (code == KeyEvent.VK_A) {
+            leftPressed = true;
+        }
+        if (code == KeyEvent.VK_D) {
+            rightPressed = true;
+        }
+        if (code == KeyEvent.VK_ENTER) {
+            enterPressed = true;
         }
     }
+
 
     @Override
     public void keyReleased(KeyEvent e) {
