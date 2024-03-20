@@ -38,13 +38,20 @@ public class BattleScreen {
         graphics2D.setColor(Color.white);
 
         // 戦闘画面
-        if (gamePanel.getGameState() == gamePanel.getBattleState()) {
+        if (battleScreenState == 0) {
             drawBattleScreen();
             drawDialogueScreen();
             drawCommandScreen();
             drawBattleDialogueScreen();
         }
+        if (battleScreenState == 1) {
+            drawBattleScreen();
+            drawDialogueScreen();
+            drawCommandScreen();
+            drawMonsterTextDialogueScreen();
+        }
     }
+
 
     public void drawBattleScreen() {
 
@@ -54,26 +61,30 @@ public class BattleScreen {
             graphics2D.setColor(new Color(0, 0, 0));
             graphics2D.fillRect(0, 0, gamePanel.getScreenWidth(), gamePanel.getScreenHeight());
 
-            graphics2D.setFont(graphics2D.getFont().deriveFont(Font.BOLD, 40F));
+            graphics2D.setFont(graphics2D.getFont().deriveFont(Font.BOLD, 30F));
 
             String playerText = "勇者";
             String playerHpText = "HP100";
             String playerCommandBattle = "たたかう";
             String playerCommandFlee = "にげる";
+            String monsterAppear = "グリーンスライムがあらわれた";
             String selectCommandBattle = ">";
             String selectCommandFlee = ">";
 
             int playerTextX = getXforCenteredText(playerText);
-            int playerTextY = gamePanel.getTileSize() * 2;
+            int playerTextY = gamePanel.getTileSize() + 12;
 
             int playerHpTextX = gamePanel.getTileSize();
-            int playerHpTextY = gamePanel.getTileSize() * 3;
+            int playerHpTextY = gamePanel.getTileSize() * 2;
 
             int commandBattleX = gamePanel.getTileSize();
             int commandBattleY = gamePanel.getTileSize() * 9;
 
             int commandFleeX = gamePanel.getTileSize();
             int commandFleeY = gamePanel.getTileSize() * 11;
+
+            int monsterAppearX = gamePanel.getTileSize() + 210;
+            int monsterAppearY = gamePanel.getTileSize() * 9;
 
             int playerSelectCommandBattleX = gamePanel.getTileSize() - 24;
             int playerSelectCommandBattleY = gamePanel.getTileSize() * 9;
@@ -88,6 +99,7 @@ public class BattleScreen {
             graphics2D.drawString(playerHpText, playerHpTextX, playerHpTextY);
             graphics2D.drawString(playerCommandBattle, commandBattleX, commandBattleY);
             graphics2D.drawString(playerCommandFlee, commandFleeX, commandFleeY);
+            graphics2D.drawString(monsterAppear, monsterAppearX, monsterAppearY);
             if (commandNum == 0) {
                 graphics2D.drawString(selectCommandBattle, playerSelectCommandBattleX, playerSelectCommandBattleY);
             }
@@ -96,7 +108,7 @@ public class BattleScreen {
             }
         } else if (battleScreenState == 1) {
 
-            graphics2D.setFont(graphics2D.getFont().deriveFont(Font.BOLD, 40F));
+            graphics2D.setFont(graphics2D.getFont().deriveFont(Font.BOLD, 30F));
 
             String playerText = "勇者";
             String playerHpText = "HP100";
@@ -104,10 +116,10 @@ public class BattleScreen {
             String selectCommandAttack = ">";
 
             int playerTextX = getXforCenteredText(playerText);
-            int playerTextY = gamePanel.getTileSize() * 2;
+            int playerTextY = gamePanel.getTileSize() + 12;
 
             int playerHpTextX = gamePanel.getTileSize();
-            int playerHpTextY = gamePanel.getTileSize() * 3;
+            int playerHpTextY = gamePanel.getTileSize() * 2;
 
             int commandAttackX = gamePanel.getTileSize();
             int commandAttackY = gamePanel.getTileSize() * 9;
@@ -122,7 +134,7 @@ public class BattleScreen {
             graphics2D.drawString(playerCommandAttack, commandAttackX, commandAttackY);
             graphics2D.drawString(selectCommandAttack, playerSelectCommandAttackX, playerSelectCommandAttackY);
 
-            graphics2D.setFont(graphics2D.getFont().deriveFont(Font.BOLD, 40F));
+            graphics2D.setFont(graphics2D.getFont().deriveFont(Font.BOLD, 30F));
 
             String monsterTextA = "グリーンスライムA";
             String monsterTextB = "グリーンスライムB";
@@ -171,10 +183,23 @@ public class BattleScreen {
         // ウィンドウ
         int x = gamePanel.getTileSize() - 30;
         int y = gamePanel.getTileSize() / 2;
-        int width = gamePanel.getScreenWidth() - (gamePanel.getTileSize() * 12);
-        int height = gamePanel.getTileSize() * 3;
+        int width = gamePanel.getScreenWidth() - (gamePanel.getTileSize() * 13);
+        int height = gamePanel.getTileSize() * 2;
 
         drawSubWindow(x, y, width, height);
+
+        graphics2D.setFont(graphics2D.getFont().deriveFont(Font.PLAIN, 28F));
+    }
+
+    public void drawBattleDialogueScreen() {
+
+        // ウィンドウ
+        int x = gamePanel.getTileSize() * 5;
+        int y = gamePanel.getTileSize() * 8;
+        int width = gamePanel.getScreenWidth() - (gamePanel.getTileSize() * 6);
+        int height = gamePanel.getTileSize() * 2;
+
+        drawBattleCommandWindow(x, y, width, height);
 
         graphics2D.setFont(graphics2D.getFont().deriveFont(Font.PLAIN, 28F));
         x += gamePanel.getTileSize();
@@ -186,12 +211,12 @@ public class BattleScreen {
         }
     }
 
-    public void drawBattleDialogueScreen() {
+    public void drawMonsterTextDialogueScreen() {
 
         // ウィンドウ
-        int x = gamePanel.getTileSize() * 6;
+        int x = gamePanel.getTileSize() * 5;
         int y = gamePanel.getTileSize() * 8;
-        int width = gamePanel.getScreenWidth() - (gamePanel.getTileSize() * 7);
+        int width = gamePanel.getScreenWidth() - (gamePanel.getTileSize() * 6);
         int height = gamePanel.getTileSize() * 4;
 
         drawBattleCommandWindow(x, y, width, height);
@@ -211,7 +236,7 @@ public class BattleScreen {
         // ウィンドウ
         int x = gamePanel.getTileSize() - 30;
         int y = gamePanel.getTileSize() * 8;
-        int width = gamePanel.getScreenWidth() - (gamePanel.getTileSize() * 11);
+        int width = gamePanel.getScreenWidth() - (gamePanel.getTileSize() * 12);
         int height = gamePanel.getTileSize() * 4;
 
         drawCommandWindow(x, y, width, height);
