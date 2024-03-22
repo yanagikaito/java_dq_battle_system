@@ -5,6 +5,7 @@ import main.ui.BattleScreen;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.Random;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -66,7 +67,6 @@ public class GamePanel extends JPanel implements Runnable {
 
         assetSetter.setMonster();
 
-        gameState = battleState;
     }
 
     public void startGameThread() {
