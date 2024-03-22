@@ -24,7 +24,7 @@ public class AssetSetter {
         int screenXmonsterC = random.nextInt(380) + 80;
         int screenYmonsterC = 200;
 
-        if (screenXmonsterA < screenXmonsterB) {
+        if (screenXmonsterA > screenXmonsterB) {
             gamePanel.monsterGreenSlime[0] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
                     screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC);
         } else if (screenXmonsterB < screenXmonsterC) {

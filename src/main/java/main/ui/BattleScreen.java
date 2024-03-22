@@ -3,6 +3,7 @@ package main.ui;
 import main.GamePanel;
 
 import java.awt.*;
+import java.util.Random;
 
 public class BattleScreen {
 
@@ -18,6 +19,8 @@ public class BattleScreen {
     private String currentDialogue = "";
 
     private int commandNum = 0;
+
+    private int monsterNum = 0;
 
     public BattleScreen(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
@@ -55,6 +58,9 @@ public class BattleScreen {
 
     public void drawBattleScreen() {
 
+        Random random = new Random();
+        int randomMonster = random.nextInt(3) + 1;
+
         // バトル画面の状態をチェックする。
         if (battleScreenState == 0) {
 
@@ -68,6 +74,7 @@ public class BattleScreen {
             String playerCommandBattle = "たたかう";
             String playerCommandFlee = "にげる";
             String monsterAppear = "グリーンスライムがあらわれた";
+            String monsterNumApper = "グリーンスライムたちがあらわれた";
             String selectCommandBattle = ">";
             String selectCommandFlee = ">";
 
@@ -86,6 +93,9 @@ public class BattleScreen {
             int monsterAppearX = gamePanel.getTileSize() + 210;
             int monsterAppearY = gamePanel.getTileSize() * 9;
 
+            int monsterNumAppearX = gamePanel.getTileSize() + 210;
+            int monsterNumAppearY = gamePanel.getTileSize() * 9;
+
             int playerSelectCommandBattleX = gamePanel.getTileSize() - 24;
             int playerSelectCommandBattleY = gamePanel.getTileSize() * 9;
 
@@ -99,7 +109,12 @@ public class BattleScreen {
             graphics2D.drawString(playerHpText, playerHpTextX, playerHpTextY);
             graphics2D.drawString(playerCommandBattle, commandBattleX, commandBattleY);
             graphics2D.drawString(playerCommandFlee, commandFleeX, commandFleeY);
-            graphics2D.drawString(monsterAppear, monsterAppearX, monsterAppearY);
+            if (monsterNum == 1) {
+                graphics2D.drawString(monsterAppear, monsterAppearX, monsterAppearY);
+            }
+            if (randomMonster > monsterNum) {
+                graphics2D.drawString(monsterNumApper, monsterNumAppearX, monsterNumAppearY);
+            }
             if (commandNum == 0) {
                 graphics2D.drawString(selectCommandBattle, playerSelectCommandBattleX, playerSelectCommandBattleY);
             }
@@ -196,7 +211,7 @@ public class BattleScreen {
         // ウィンドウ
         int x = gamePanel.getTileSize() * 5;
         int y = gamePanel.getTileSize() * 8;
-        int width = gamePanel.getScreenWidth() - (gamePanel.getTileSize() * 6);
+        int width = gamePanel.getScreenWidth() - (gamePanel.getTileSize() * 5);
         int height = gamePanel.getTileSize() * 2;
 
         drawBattleCommandWindow(x, y, width, height);
