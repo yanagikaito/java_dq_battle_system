@@ -59,11 +59,12 @@ public class GreenSlime {
 
 
     public void draw(Graphics2D graphics2D) {
+
         // 画像を指定された座標に描画
-        if (screenXmonsterA > screenXmonsterB) {
+        if (screenXmonsterA < screenXmonsterB) {
             screenXmonsterA = 80;
             graphics2D.drawImage(image, screenXmonsterA, screenYmonsterA, gamePanel.getTileSize() * 3, gamePanel.getTileSize() * 3, null);
-        } else if (screenXmonsterB > screenXmonsterC) {
+        } else if (screenXmonsterB < screenXmonsterC) {
             screenXmonsterA = 80;
             screenXmonsterB = 230;
             graphics2D.drawImage(image, screenXmonsterA, screenYmonsterA, gamePanel.getTileSize() * 3, gamePanel.getTileSize() * 3, null);

@@ -15,24 +15,26 @@ public class AssetSetter {
 
         Random random = new Random();
 
-        int screenXmonsterA = random.nextInt(380) + 80;
+        int randomMonster = random.nextInt(3) + 1;
+
+        int screenXmonsterA = 80;
         int screenYmonsterA = 200;
 
-        int screenXmonsterB = random.nextInt(380) + 80;
+        int screenXmonsterB = 230;
         int screenYmonsterB = 200;
 
-        int screenXmonsterC = random.nextInt(380) + 80;
+        int screenXmonsterC = 380;
         int screenYmonsterC = 200;
 
-        if (screenXmonsterA > screenXmonsterB) {
+        if (randomMonster == 1) {
             gamePanel.monsterGreenSlime[0] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
                     screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC);
-        } else if (screenXmonsterB < screenXmonsterC) {
+        } else if (randomMonster == 2) {
             gamePanel.monsterGreenSlime[0] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
                     screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC);
             gamePanel.monsterGreenSlime[1] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
                     screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC);
-        } else if (screenXmonsterC < screenXmonsterB) {
+        } else if (randomMonster == 3) {
             gamePanel.monsterGreenSlime[0] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
                     screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC);
             gamePanel.monsterGreenSlime[1] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
@@ -42,3 +44,4 @@ public class AssetSetter {
         }
     }
 }
+
