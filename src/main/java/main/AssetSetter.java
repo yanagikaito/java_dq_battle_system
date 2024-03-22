@@ -15,33 +15,24 @@ public class AssetSetter {
 
         Random random = new Random();
 
-        int screenXmonsterA = random.nextInt(500) + 80;
+        int screenXmonsterA = random.nextInt(380) + 80;
         int screenYmonsterA = 200;
 
-        int screenXmonsterB = random.nextInt(500) + 80;
+        int screenXmonsterB = random.nextInt(380) + 80;
         int screenYmonsterB = 200;
 
-        int screenXmonsterC = random.nextInt(500) + 80;
+        int screenXmonsterC = random.nextInt(380) + 80;
         int screenYmonsterC = 200;
 
-        if (screenXmonsterA == 80 || screenXmonsterB == 350 || screenXmonsterC == 500) {
+        if (screenXmonsterA < screenXmonsterB) {
             gamePanel.monsterGreenSlime[0] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
                     screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC);
-        }
-        if (screenXmonsterA == 80 || screenXmonsterB == 350 || screenXmonsterC == 500) {
-            gamePanel.monsterGreenSlime[0] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
-                    screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC);
-            gamePanel.monsterGreenSlime[1] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
-                    screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC);
-        }
-        if (screenXmonsterA == 80 || screenXmonsterB == 350 || screenXmonsterC == 500) {
+        } else if (screenXmonsterB < screenXmonsterC) {
             gamePanel.monsterGreenSlime[0] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
                     screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC);
             gamePanel.monsterGreenSlime[1] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
                     screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC);
-            gamePanel.monsterGreenSlime[2] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
-                    screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC);
-        } else {
+        } else if (screenXmonsterC < screenXmonsterB) {
             gamePanel.monsterGreenSlime[0] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
                     screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC);
             gamePanel.monsterGreenSlime[1] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
