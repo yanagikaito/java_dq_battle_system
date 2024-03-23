@@ -16,22 +16,27 @@ public class AssetSetter {
         Random random = new Random();
 
         int screenXmonsterA = random.nextInt(620) + 80;
-        int screenYmonsterA = 200;
+        int screenYmonsterA = (gamePanel.getScreenHeight() / 2) - gamePanel.getTileSize();
 
         int screenXmonsterB = random.nextInt(620) + 80;
-        int screenYmonsterB = 200;
+        int screenYmonsterB = (gamePanel.getScreenHeight() / 2) - gamePanel.getTileSize();
+
 
         int screenXmonsterC = random.nextInt(620) + 80;
-        int screenYmonsterC = 200;
+        int screenYmonsterC = (gamePanel.getScreenHeight() / 2) - gamePanel.getTileSize();
+
 
         int screenXmonsterD = random.nextInt(620) + 80;
-        int screenYmonsterD = 200;
+        int screenYmonsterD = (gamePanel.getScreenHeight() / 2) - gamePanel.getTileSize();
+
 
         int screenXmonsterE = random.nextInt(620) + 80;
-        int screenYmonsterE = 200;
+        int screenYmonsterE = (gamePanel.getScreenHeight() / 2) - gamePanel.getTileSize();
+
 
         int screenXmonsterF = random.nextInt(620) + 80;
-        int screenYmonsterF = 200;
+        int screenYmonsterF = (gamePanel.getScreenHeight() / 2) - gamePanel.getTileSize();
+
 
         if (screenXmonsterA > screenXmonsterB) {
             gamePanel.monsterGreenSlime[0] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,

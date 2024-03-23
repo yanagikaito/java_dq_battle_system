@@ -79,53 +79,53 @@ public class GreenSlime {
     public void draw(Graphics2D graphics2D) {
         // 画像を指定された座標に描画
         if (screenXmonsterA > screenXmonsterB) {
-            screenXmonsterA = 20;
-            graphics2D.drawImage(image, screenXmonsterA, screenYmonsterA, gamePanel.getTileSize() * 2, gamePanel.getTileSize() * 2, null);
+            screenXmonsterA = (gamePanel.getScreenWidth() - 240) - gamePanel.getTileSize() * 6;
+            graphics2D.drawImage(image, screenXmonsterA, screenYmonsterA, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
         } else if (screenXmonsterB > screenXmonsterC) {
-            screenXmonsterA = 20;
-            screenXmonsterB = 140;
-            graphics2D.drawImage(image, screenXmonsterA, screenYmonsterA, gamePanel.getTileSize() * 2, gamePanel.getTileSize() * 2, null);
-            graphics2D.drawImage(image, screenXmonsterB, screenYmonsterB, gamePanel.getTileSize() * 2, gamePanel.getTileSize() * 2, null);
+            screenXmonsterA = (gamePanel.getScreenWidth() - 240) - gamePanel.getTileSize() * 6;
+            screenXmonsterB = (gamePanel.getScreenWidth() - 240) - gamePanel.getTileSize() * 5;
+            graphics2D.drawImage(image, screenXmonsterA, screenYmonsterA, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+            graphics2D.drawImage(image, screenXmonsterB, screenYmonsterB, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
         } else if (screenXmonsterC > screenXmonsterD) {
-            screenXmonsterA = 20;
-            screenXmonsterB = 140;
-            screenXmonsterC = 260;
-            graphics2D.drawImage(image, screenXmonsterA, screenYmonsterA, gamePanel.getTileSize() * 2, gamePanel.getTileSize() * 2, null);
-            graphics2D.drawImage(image, screenXmonsterB, screenYmonsterB, gamePanel.getTileSize() * 2, gamePanel.getTileSize() * 2, null);
-            graphics2D.drawImage(image, screenXmonsterC, screenYmonsterC, gamePanel.getTileSize() * 2, gamePanel.getTileSize() * 2, null);
+            screenXmonsterA = (gamePanel.getScreenWidth() - 240) - gamePanel.getTileSize() * 6;
+            screenXmonsterB = (gamePanel.getScreenWidth() - 240) - gamePanel.getTileSize() * 5;
+            screenXmonsterC = (gamePanel.getScreenWidth() - 240) - gamePanel.getTileSize() * 4;
+            graphics2D.drawImage(image, screenXmonsterA, screenYmonsterA, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+            graphics2D.drawImage(image, screenXmonsterB, screenYmonsterB, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+            graphics2D.drawImage(image, screenXmonsterC, screenYmonsterC, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
         } else if (screenXmonsterD > screenXmonsterE) {
-            screenXmonsterA = 20;
-            screenXmonsterB = 140;
-            screenXmonsterC = 260;
-            screenXmonsterD = 380;
-            graphics2D.drawImage(image, screenXmonsterA, screenYmonsterA, gamePanel.getTileSize() * 2, gamePanel.getTileSize() * 2, null);
-            graphics2D.drawImage(image, screenXmonsterB, screenYmonsterB, gamePanel.getTileSize() * 2, gamePanel.getTileSize() * 2, null);
-            graphics2D.drawImage(image, screenXmonsterC, screenYmonsterC, gamePanel.getTileSize() * 2, gamePanel.getTileSize() * 2, null);
-            graphics2D.drawImage(image, screenXmonsterD, screenYmonsterD, gamePanel.getTileSize() * 2, gamePanel.getTileSize() * 2, null);
+            screenXmonsterA = (gamePanel.getScreenWidth() - 240) - gamePanel.getTileSize() * 6;
+            screenXmonsterB = (gamePanel.getScreenWidth() - 240) - gamePanel.getTileSize() * 5;
+            screenXmonsterC = (gamePanel.getScreenWidth() - 240) - gamePanel.getTileSize() * 4;
+            screenXmonsterD = (gamePanel.getScreenWidth() - 240) - gamePanel.getTileSize() * 3;
+            graphics2D.drawImage(image, screenXmonsterA, screenYmonsterA, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+            graphics2D.drawImage(image, screenXmonsterB, screenYmonsterB, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+            graphics2D.drawImage(image, screenXmonsterC, screenYmonsterC, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+            graphics2D.drawImage(image, screenXmonsterD, screenYmonsterD, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
         } else if (screenXmonsterE > screenXmonsterF) {
-            screenXmonsterA = 20;
-            screenXmonsterB = 140;
-            screenXmonsterC = 260;
-            screenXmonsterD = 380;
-            screenXmonsterE = 500;
-            graphics2D.drawImage(image, screenXmonsterA, screenYmonsterA, gamePanel.getTileSize() * 2, gamePanel.getTileSize() * 2, null);
-            graphics2D.drawImage(image, screenXmonsterB, screenYmonsterB, gamePanel.getTileSize() * 2, gamePanel.getTileSize() * 2, null);
-            graphics2D.drawImage(image, screenXmonsterC, screenYmonsterC, gamePanel.getTileSize() * 2, gamePanel.getTileSize() * 2, null);
-            graphics2D.drawImage(image, screenXmonsterD, screenYmonsterD, gamePanel.getTileSize() * 2, gamePanel.getTileSize() * 2, null);
-            graphics2D.drawImage(image, screenXmonsterE, screenYmonsterE, gamePanel.getTileSize() * 2, gamePanel.getTileSize() * 2, null);
+            screenXmonsterA = (gamePanel.getScreenWidth() - 240) - gamePanel.getTileSize() * 6;
+            screenXmonsterB = (gamePanel.getScreenWidth() - 240) - gamePanel.getTileSize() * 5;
+            screenXmonsterC = (gamePanel.getScreenWidth() - 240) - gamePanel.getTileSize() * 4;
+            screenXmonsterD = (gamePanel.getScreenWidth() - 240) - gamePanel.getTileSize() * 3;
+            screenXmonsterE = (gamePanel.getScreenWidth() - 240) - gamePanel.getTileSize() * 2;
+            graphics2D.drawImage(image, screenXmonsterA, screenYmonsterA, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+            graphics2D.drawImage(image, screenXmonsterB, screenYmonsterB, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+            graphics2D.drawImage(image, screenXmonsterC, screenYmonsterC, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+            graphics2D.drawImage(image, screenXmonsterD, screenYmonsterD, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+            graphics2D.drawImage(image, screenXmonsterE, screenYmonsterE, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
         } else if (screenXmonsterF > screenXmonsterA) {
-            screenXmonsterA = 20;
-            screenXmonsterB = 140;
-            screenXmonsterC = 260;
-            screenXmonsterD = 380;
-            screenXmonsterE = 500;
-            screenXmonsterF = 620;
-            graphics2D.drawImage(image, screenXmonsterA, screenYmonsterA, gamePanel.getTileSize() * 2, gamePanel.getTileSize() * 2, null);
-            graphics2D.drawImage(image, screenXmonsterB, screenYmonsterB, gamePanel.getTileSize() * 2, gamePanel.getTileSize() * 2, null);
-            graphics2D.drawImage(image, screenXmonsterC, screenYmonsterC, gamePanel.getTileSize() * 2, gamePanel.getTileSize() * 2, null);
-            graphics2D.drawImage(image, screenXmonsterD, screenYmonsterD, gamePanel.getTileSize() * 2, gamePanel.getTileSize() * 2, null);
-            graphics2D.drawImage(image, screenXmonsterE, screenYmonsterE, gamePanel.getTileSize() * 2, gamePanel.getTileSize() * 2, null);
-            graphics2D.drawImage(image, screenXmonsterF, screenYmonsterF, gamePanel.getTileSize() * 2, gamePanel.getTileSize() * 2, null);
+            screenXmonsterA = (gamePanel.getScreenWidth() - 240) - gamePanel.getTileSize() * 6;
+            screenXmonsterB = (gamePanel.getScreenWidth() - 240) - gamePanel.getTileSize() * 5;
+            screenXmonsterC = (gamePanel.getScreenWidth() - 240) - gamePanel.getTileSize() * 4;
+            screenXmonsterD = (gamePanel.getScreenWidth() - 240) - gamePanel.getTileSize() * 3;
+            screenXmonsterE = (gamePanel.getScreenWidth() - 240) - gamePanel.getTileSize() * 2;
+            screenXmonsterF = (gamePanel.getScreenWidth() - 240) - gamePanel.getTileSize();
+            graphics2D.drawImage(image, screenXmonsterA, screenYmonsterA, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+            graphics2D.drawImage(image, screenXmonsterB, screenYmonsterB, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+            graphics2D.drawImage(image, screenXmonsterC, screenYmonsterC, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+            graphics2D.drawImage(image, screenXmonsterD, screenYmonsterD, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+            graphics2D.drawImage(image, screenXmonsterE, screenYmonsterE, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+            graphics2D.drawImage(image, screenXmonsterF, screenYmonsterF, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
         }
     }
 }
