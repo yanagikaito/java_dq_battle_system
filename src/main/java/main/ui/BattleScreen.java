@@ -46,6 +46,7 @@ public class BattleScreen {
             drawDialogueScreen();
             drawCommandScreen();
             drawBattleDialogueScreen();
+//          drawDebugScreen();
         }
         if (battleScreenState == 1) {
             drawBattleScreen();
@@ -205,6 +206,39 @@ public class BattleScreen {
 
         graphics2D.setFont(graphics2D.getFont().deriveFont(Font.PLAIN, 28F));
     }
+
+//    // デバッグ
+//    public void drawDebugScreen() {
+//
+//        // ウィンドウ
+//        // x240
+//        int x = (gamePanel.getScreenWidth() / 2) - gamePanel.getTileSize() * 3;
+//        // y240
+//        int y = (gamePanel.getScreenHeight() / 2) - gamePanel.getTileSize();
+//        // width 288
+//        int width = gamePanel.getTileSize() * 6;
+//        int height = gamePanel.getTileSize();
+//
+//        drawDebugWindow(x, y, width, height);
+//
+//        graphics2D.setFont(graphics2D.getFont().deriveFont(Font.PLAIN, 28F));
+//    }
+//
+//    // デバッグ
+//    public void drawDebugWindow(int x, int y, int width, int height) {
+//
+//        Color c = new Color(0, 0, 0, 0);
+//        graphics2D.setColor(c);
+//
+//        graphics2D.fillRoundRect(x, y, width, height, 35, 35);
+//
+//        c = new Color(230, 0, 0);
+//        graphics2D.setColor(c);
+//
+//        graphics2D.setStroke(new BasicStroke(5));
+//        graphics2D.drawRoundRect(x + 5, y + 5, width - 10, height - 10, 25, 25);
+//
+//    }
 
     public void drawBattleDialogueScreen() {
 
