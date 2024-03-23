@@ -5,7 +5,6 @@ import main.ui.BattleScreen;
 
 import javax.swing.*;
 import java.awt.*;
-import java.util.Random;
 
 public class GamePanel extends JPanel implements Runnable {
 
