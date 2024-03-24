@@ -6,6 +6,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Random;
 
 public class GreenSlime {
 
@@ -34,7 +35,9 @@ public class GreenSlime {
     }
 
     public void draw(Graphics2D graphics2D) {
-        for (int i = 0; i < 6; i++) {
+        Random random = new Random();
+        int monsterRandom = random.nextInt(6) + 1;
+        for (int i = 1; i < monsterRandom; i++) {
             int screenXmonster = (gamePanel.getScreenWidth() - 240) - gamePanel.getTileSize() * i;
             int screenYmonster = (gamePanel.getScreenHeight() / 2) - gamePanel.getTileSize();
             graphics2D.drawImage(image, screenXmonster, screenYmonster, gamePanel.getTileSize(), gamePanel.getTileSize(), null);

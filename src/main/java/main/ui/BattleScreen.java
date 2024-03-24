@@ -46,7 +46,7 @@ public class BattleScreen {
             drawDialogueScreen();
             drawCommandScreen();
             drawBattleDialogueScreen();
-//          drawDebugScreen();
+//            drawDebugScreen();
         }
         if (battleScreenState == 1) {
             drawBattleScreen();
