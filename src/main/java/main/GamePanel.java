@@ -6,7 +6,7 @@ import main.ui.BattleScreen;
 import javax.swing.*;
 import java.awt.*;
 
-public class GamePanel extends JPanel implements Runnable {
+public class GamePanel extends JPanel {
 
     // 16x16のタイル プレイヤーやNPC,背景などのサイズ
     private final int originalTileSize = 16;
@@ -66,56 +66,6 @@ public class GamePanel extends JPanel implements Runnable {
 
         assetSetter.setMonster();
 
-    }
-
-    public void startGameThread() {
-
-        gameThread = new Thread(this);
-        // runメソッドが自動的に呼ばれる
-        gameThread.start();
-
-    }
-
-    @Override
-    public void run() {
-        double drawInterval = 1000000000 / FPS;
-        double delta = 0;
-        long lastTime = System.nanoTime();
-        long currentTime;
-        long timer = 0;
-        int drawCount = 0;
-
-
-        while (gameThread != null) {
-
-            currentTime = System.nanoTime();
-            // 1ループごとに経過時間をdrawIntervalで割っている
-            delta += (currentTime - lastTime) / drawInterval;
-            timer += (currentTime - lastTime);
-            lastTime = currentTime;
-
-            if (delta >= 1) {
-                update();
-                repaint();
-                delta--;
-                drawCount++;
-            }
-
-            if (timer >= 1000000000) {
-                System.out.println("FPS:" + drawCount);
-                drawCount = 0;
-                timer = 0;
-            }
-        }
-    }
-
-    public void update() {
-
-        for (int i = 0; i < monsterGreenSlime.length; i++) {
-            if (monsterGreenSlime[i] != null) {
-                monsterGreenSlime[i].update();
-            }
-        }
     }
 
     public void paintComponent(Graphics g) {
