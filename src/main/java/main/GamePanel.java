@@ -1,5 +1,6 @@
 package main;
 
+import main.entity.Entity;
 import main.monster.GreenSlime;
 import main.ui.BattleScreen;
 
@@ -45,7 +46,7 @@ public class GamePanel extends JPanel implements Runnable {
 
     private KeyHandler keyHandler = new KeyHandler(this);
 
-    public GreenSlime[] monsterGreenSlime = new GreenSlime[10];
+    public Entity[] monsterGreenSlime = new Entity[10];
 
     public AssetSetter assetSetter = new AssetSetter(this);
 
@@ -113,7 +114,7 @@ public class GamePanel extends JPanel implements Runnable {
 
         for (int i = 0; i < monsterGreenSlime.length; i++) {
             if (monsterGreenSlime[i] != null) {
-                monsterGreenSlime[i].update();
+//                monsterGreenSlime[i].update();
             }
         }
     }
@@ -129,9 +130,9 @@ public class GamePanel extends JPanel implements Runnable {
         if (gameState == battleState) {
             battleScreen.draw(g2);
         }
-        for (GreenSlime greenSlime : monsterGreenSlime) {
-            if (greenSlime != null) {
-                greenSlime.draw(g2);
+        for (Entity entity : monsterGreenSlime) {
+            if (entity != null) {
+                entity.draw(g2);
             }
         }
     }
