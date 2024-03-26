@@ -2,111 +2,43 @@ package main;
 
 import main.monster.GreenSlime;
 
+import java.awt.Point;
 import java.util.Random;
 
 public class AssetSetter {
     GamePanel gamePanel;
+
+    private final int MAX_MONSTERS = 8;
+    private final int SPACING = 44;
 
     public AssetSetter(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
     }
 
     public void setMonster() {
-
         Random random = new Random();
 
-        int screenXmonsterA = random.nextInt(620) + 80;
-        int screenYmonsterA = (gamePanel.getScreenHeight() / 2) - gamePanel.getTileSize();
+        // GreenSlimeのインスタンス数を最大8体に固定
+        int numberOfMonsters = Math.min(random.nextInt(MAX_MONSTERS) + 1, MAX_MONSTERS);
 
-        int screenXmonsterB = random.nextInt(620) + 80;
-        int screenYmonsterB = (gamePanel.getScreenHeight() / 2) - gamePanel.getTileSize();
+        // 画面中央のX座標を計算
+        int centerX = gamePanel.getScreenWidth() / 2;
 
+        // 最初のGreenSlimeが配置されるX座標を計算（中央からのオフセットを考慮）
+        int startX = centerX - (numberOfMonsters / 2 * SPACING) + (numberOfMonsters % 2 == 0 ? SPACING / 2 : 0);
 
-        int screenXmonsterC = random.nextInt(620) + 80;
-        int screenYmonsterC = (gamePanel.getScreenHeight() / 2) - gamePanel.getTileSize();
-
-
-        int screenXmonsterD = random.nextInt(620) + 80;
-        int screenYmonsterD = (gamePanel.getScreenHeight() / 2) - gamePanel.getTileSize();
-
-
-        int screenXmonsterE = random.nextInt(620) + 80;
-        int screenYmonsterE = (gamePanel.getScreenHeight() / 2) - gamePanel.getTileSize();
-
-
-        int screenXmonsterF = random.nextInt(620) + 80;
-        int screenYmonsterF = (gamePanel.getScreenHeight() / 2) - gamePanel.getTileSize();
-
-
-        if (screenXmonsterA > screenXmonsterB) {
-            gamePanel.monsterGreenSlime[0] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
-                    screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC, screenXmonsterD, screenYmonsterD,
-                    screenXmonsterE, screenYmonsterE, screenXmonsterF, screenYmonsterF);
-        } else if (screenXmonsterB > screenXmonsterC) {
-            gamePanel.monsterGreenSlime[0] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
-                    screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC, screenXmonsterD, screenYmonsterD,
-                    screenXmonsterE, screenYmonsterE, screenXmonsterF, screenYmonsterF);
-            gamePanel.monsterGreenSlime[1] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
-                    screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC, screenXmonsterD, screenYmonsterD,
-                    screenXmonsterE, screenYmonsterE, screenXmonsterF, screenYmonsterF);
-        } else if (screenXmonsterC > screenXmonsterB) {
-            gamePanel.monsterGreenSlime[0] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
-                    screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC, screenXmonsterD, screenYmonsterD,
-                    screenXmonsterE, screenYmonsterE, screenXmonsterF, screenYmonsterF);
-            gamePanel.monsterGreenSlime[1] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
-                    screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC, screenXmonsterD, screenYmonsterD,
-                    screenXmonsterE, screenYmonsterE, screenXmonsterF, screenYmonsterF);
-            gamePanel.monsterGreenSlime[2] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
-                    screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC, screenXmonsterD, screenYmonsterD,
-                    screenXmonsterE, screenYmonsterE, screenXmonsterF, screenYmonsterF);
-        } else if (screenXmonsterD > screenXmonsterE) {
-            gamePanel.monsterGreenSlime[0] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
-                    screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC, screenXmonsterD, screenYmonsterD,
-                    screenXmonsterE, screenYmonsterE, screenXmonsterF, screenYmonsterF);
-            gamePanel.monsterGreenSlime[1] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
-                    screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC, screenXmonsterD, screenYmonsterD,
-                    screenXmonsterE, screenYmonsterE, screenXmonsterF, screenYmonsterF);
-            gamePanel.monsterGreenSlime[2] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
-                    screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC, screenXmonsterD, screenYmonsterD,
-                    screenXmonsterE, screenYmonsterE, screenXmonsterF, screenYmonsterF);
-            gamePanel.monsterGreenSlime[3] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
-                    screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC, screenXmonsterD, screenYmonsterD,
-                    screenXmonsterE, screenYmonsterE, screenXmonsterF, screenYmonsterF);
-        } else if (screenXmonsterE > screenXmonsterF) {
-            gamePanel.monsterGreenSlime[0] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
-                    screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC, screenXmonsterD, screenYmonsterD,
-                    screenXmonsterE, screenYmonsterE, screenXmonsterF, screenYmonsterF);
-            gamePanel.monsterGreenSlime[1] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
-                    screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC, screenXmonsterD, screenYmonsterD,
-                    screenXmonsterE, screenYmonsterE, screenXmonsterF, screenYmonsterF);
-            gamePanel.monsterGreenSlime[2] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
-                    screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC, screenXmonsterD, screenYmonsterD,
-                    screenXmonsterE, screenYmonsterE, screenXmonsterF, screenYmonsterF);
-            gamePanel.monsterGreenSlime[3] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
-                    screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC, screenXmonsterD, screenYmonsterD,
-                    screenXmonsterE, screenYmonsterE, screenXmonsterF, screenYmonsterF);
-            gamePanel.monsterGreenSlime[4] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
-                    screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC, screenXmonsterD, screenYmonsterD,
-                    screenXmonsterE, screenYmonsterE, screenXmonsterF, screenYmonsterF);
-        } else if (screenXmonsterF > screenXmonsterA) {
-            gamePanel.monsterGreenSlime[0] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
-                    screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC, screenXmonsterD, screenYmonsterD,
-                    screenXmonsterE, screenYmonsterE, screenXmonsterF, screenYmonsterF);
-            gamePanel.monsterGreenSlime[1] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
-                    screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC, screenXmonsterD, screenYmonsterD,
-                    screenXmonsterE, screenYmonsterE, screenXmonsterF, screenYmonsterF);
-            gamePanel.monsterGreenSlime[2] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
-                    screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC, screenXmonsterD, screenYmonsterD,
-                    screenXmonsterE, screenYmonsterE, screenXmonsterF, screenYmonsterF);
-            gamePanel.monsterGreenSlime[3] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
-                    screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC, screenXmonsterD, screenYmonsterD,
-                    screenXmonsterE, screenYmonsterE, screenXmonsterF, screenYmonsterF);
-            gamePanel.monsterGreenSlime[4] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
-                    screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC, screenXmonsterD, screenYmonsterD,
-                    screenXmonsterE, screenYmonsterE, screenXmonsterF, screenYmonsterF);
-            gamePanel.monsterGreenSlime[5] = new GreenSlime(gamePanel, screenXmonsterA, screenYmonsterA,
-                    screenXmonsterB, screenYmonsterB, screenXmonsterC, screenYmonsterC, screenXmonsterD, screenYmonsterD,
-                    screenXmonsterE, screenYmonsterE, screenXmonsterF, screenYmonsterF);
+        for (int i = 0; i < numberOfMonsters; i++) {
+            gamePanel.monsterGreenSlime[i] = createGreenSlime(startX, i);
         }
+    }
+
+    private GreenSlime createGreenSlime(int startX, int index) {
+        int screenY = (gamePanel.getScreenHeight() / 2) - gamePanel.getTileSize();
+        // 各モンスターのX座標を等間隔に設定
+        int screenX = startX + index * SPACING;
+
+        Point position = new Point(screenX, screenY);
+
+        return new GreenSlime(gamePanel, new Point[]{position});
     }
 }
