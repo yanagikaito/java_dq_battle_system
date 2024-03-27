@@ -9,7 +9,7 @@ public class AssetSetter {
     GamePanel gamePanel;
 
     private final int MAX_MONSTERS = 8;
-    private final int SPACING = 44;
+    private final int SPACING = 48;
 
     public AssetSetter(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
