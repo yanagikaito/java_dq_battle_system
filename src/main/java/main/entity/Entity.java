@@ -28,13 +28,17 @@ public class Entity {
 
     private boolean collisionOn = false;
 
-    private Rectangle solidArea;
+    private Rectangle solidArea = new Rectangle(0, 0, 48, 48);
 
     public Entity(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
     }
 
     public void update() {
+
+        setCollisionOn(false);
+
+        gamePanel.collisionChecker.checkTile(this);
 
         switch (direction) {
             case "up":
