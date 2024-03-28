@@ -25,16 +25,16 @@ public class Player extends Entity {
         playerScreenX = (gamePanel.getScreenWidth() / 2) - gamePanel.getTileSize();
         playerScreenY = (gamePanel.getScreenHeight() / 2) - gamePanel.getTileSize();
 
-//        // この四角形をインスタンス化するときにコンストラクタに4つのパラメーターを渡せる。
-//        setSolidArea(new Rectangle());
-//        getSolidArea().x = 8;
-//        getSolidArea().y = 16;
+        // この四角形をインスタンス化するときにコンストラクタに4つのパラメーターを渡せる。
+        setSolidArea(new Rectangle());
+        getSolidArea().x = 8;
+        getSolidArea().y = 16;
 
-//        setSolidAreaDefaultX(getSolidArea().x);
-//        setSolidAreaDefaultY(getSolidArea().y);
+        setSolidAreaDefaultX(8);
+        setSolidAreaDefaultY(16);
 
-//        getSolidArea().width = 32;
-//        getSolidArea().height = 32;
+        getSolidArea().width = 32;
+        getSolidArea().height = 32;
 
         // コンストラクタの中にメソッド宣言すれば初期値が設定される。
         setDefaultValues();
@@ -98,7 +98,7 @@ public class Player extends Entity {
 
             switch (direction) {
                 case "up":
-                    setWorldX(getWorldX() - speed); // プレイヤーのY座標からプレイヤーの速度の値を引く形になります。
+                    setWorldY(getWorldY() - speed); // プレイヤーのY座標からプレイヤーの速度の値を引く形になります。
                     break;
                 case "down":
                     setWorldY(getWorldY() + speed); // プレイヤーのY座標からプレイヤーの速度の値を足す形になります。
@@ -152,6 +152,7 @@ public class Player extends Entity {
                 if (spriteNum == 2) {
                     image = right2;
                 }
+
         }
 
         g2.drawImage(image, playerScreenX, playerScreenY, gamePanel.getTileSize(), gamePanel.getTileSize(), null);

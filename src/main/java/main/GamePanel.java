@@ -2,6 +2,7 @@ package main;
 
 import main.monster.GreenSlime;
 import main.player.Player;
+import main.tile.TileManager;
 import main.ui.BattleScreen;
 
 import javax.swing.*;
@@ -33,6 +34,9 @@ public class GamePanel extends JPanel implements Runnable {
     // ゲーム画面の高さは576ピクセル
     private final int screenHeight = tileSize * maxScreenCol;
 
+    private final int maxWorldRow = 50;
+    private final int maxWorldCol = 50;
+
     // FPS
     private int FPS = 60;
 
@@ -53,6 +57,10 @@ public class GamePanel extends JPanel implements Runnable {
     public GreenSlime[] monsterGreenSlime = new GreenSlime[10];
 
     public AssetSetter assetSetter = new AssetSetter(this);
+
+    private TileManager tileManager = new TileManager(this);
+
+    public CollisionChecker collisionChecker = new CollisionChecker(this);
 
     public GamePanel() {
 
@@ -137,10 +145,11 @@ public class GamePanel extends JPanel implements Runnable {
         Graphics2D g2 = (Graphics2D) g;
 
         if (gameState == playState) {
+            tileManager.draw(g2);
             player.draw(g2);
         }
-        // 戦闘画面表示
         if (gameState == battleState) {
+            // 戦闘画面表示
             battleScreen.draw(g2);
             for (GreenSlime greenSlime : monsterGreenSlime) {
                 if (greenSlime != null) {
@@ -181,5 +190,17 @@ public class GamePanel extends JPanel implements Runnable {
 
     public Player getPlayer() {
         return player;
+    }
+
+    public int getMaxWorldCol() {
+        return maxWorldCol;
+    }
+
+    public int getMaxWorldRow() {
+        return maxWorldRow;
+    }
+
+    public TileManager getTileManager() {
+        return tileManager;
     }
 }
