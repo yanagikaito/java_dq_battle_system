@@ -1,6 +1,7 @@
 package main;
 
 import main.monster.GreenSlime;
+import main.player.Player;
 import main.ui.BattleScreen;
 
 import javax.swing.*;
@@ -39,11 +40,15 @@ public class GamePanel extends JPanel implements Runnable {
 
     private int gameState;
 
-    private final int battleState = 0;
+    private final int battleState = 1;
+
+    private final int playState = 0;
 
     private BattleScreen battleScreen = new BattleScreen(this);
 
     private KeyHandler keyHandler = new KeyHandler(this);
+
+    private Player player = new Player(this, keyHandler);
 
     public GreenSlime[] monsterGreenSlime = new GreenSlime[10];
 
@@ -111,9 +116,15 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void update() {
 
-        for (int i = 0; i < monsterGreenSlime.length; i++) {
-            if (monsterGreenSlime[i] != null) {
-                monsterGreenSlime[i].update();
+        if (gameState == playState) {
+
+            //　プレイヤー
+            player.update();
+
+            for (int i = 0; i < monsterGreenSlime.length; i++) {
+                if (monsterGreenSlime[i] != null) {
+                    monsterGreenSlime[i].update();
+                }
             }
         }
     }
@@ -125,13 +136,16 @@ public class GamePanel extends JPanel implements Runnable {
         //  GraphicsをGraphics2Dに変換したことを意味している
         Graphics2D g2 = (Graphics2D) g;
 
+        if (gameState == playState) {
+            player.draw(g2);
+        }
         // 戦闘画面表示
         if (gameState == battleState) {
             battleScreen.draw(g2);
-        }
-        for (GreenSlime greenSlime : monsterGreenSlime) {
-            if (greenSlime != null) {
-                greenSlime.draw(g2);
+            for (GreenSlime greenSlime : monsterGreenSlime) {
+                if (greenSlime != null) {
+                    greenSlime.draw(g2);
+                }
             }
         }
     }
@@ -165,4 +179,7 @@ public class GamePanel extends JPanel implements Runnable {
         return battleScreen;
     }
 
+    public Player getPlayer() {
+        return player;
+    }
 }
