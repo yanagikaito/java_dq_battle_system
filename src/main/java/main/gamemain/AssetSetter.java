@@ -1,5 +1,6 @@
-package main;
+package main.gamemain;
 
+import main.gamemain.GamePanel;
 import main.monster.GreenSlime;
 
 import java.awt.Point;

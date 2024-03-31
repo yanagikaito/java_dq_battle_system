@@ -1,6 +1,6 @@
 package main.ui;
 
-import main.GamePanel;
+import main.gamemain.GamePanel;
 
 import java.awt.*;
 import java.util.Random;

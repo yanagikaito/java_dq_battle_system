@@ -1,4 +1,4 @@
-package main;
+package main.gamemain;
 
 import main.monster.GreenSlime;
 import main.player.Player;
@@ -63,16 +63,13 @@ public class GamePanel extends JPanel implements Runnable {
     public CollisionChecker collisionChecker = new CollisionChecker(this);
 
     public GamePanel() {
-
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
-
         this.setBackground(Color.BLACK);
-
         this.setDoubleBuffered(true);
-
         this.addKeyListener(keyHandler);
-
         this.setFocusable(true);
+        this.setupGame();
+        this.startGameThread();
     }
 
     public void setupGame() {
