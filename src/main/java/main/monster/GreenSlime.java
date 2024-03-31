@@ -1,6 +1,6 @@
 package main.monster;
 
-import main.GamePanel;
+import main.gamemain.GamePanel;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

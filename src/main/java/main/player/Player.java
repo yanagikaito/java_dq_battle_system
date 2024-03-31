@@ -1,7 +1,7 @@
 package main.player;
 
-import main.GamePanel;
-import main.KeyHandler;
+import main.gamemain.GamePanel;
+import main.gamemain.KeyHandler;
 import main.entity.Entity;
 
 import javax.imageio.ImageIO;
@@ -26,12 +26,12 @@ public class Player extends Entity {
         playerScreenY = (gamePanel.getScreenHeight() / 2) - gamePanel.getTileSize();
 
         // この四角形をインスタンス化するときにコンストラクタに4つのパラメーターを渡せる。
-        setSolidArea(new Rectangle());
+        solidArea = new Rectangle();
         getSolidArea().x = 8;
         getSolidArea().y = 16;
 
-        setSolidAreaDefaultX(8);
-        setSolidAreaDefaultY(16);
+        solidAreaDefaultX = solidArea.x;
+        solidAreaDefaultY = solidArea.y;
 
         getSolidArea().width = 32;
         getSolidArea().height = 32;
@@ -75,26 +75,25 @@ public class Player extends Entity {
 
     public void update() {
 
-        if (keyHandler.upPressed == true || keyHandler.downPressed == true ||
-                keyHandler.leftPressed == true || keyHandler.rightPressed == true || keyHandler.enterPressed == true) {
-            if (keyHandler.upPressed == true) {
+        if (keyHandler.upPressed || keyHandler.downPressed ||
+                keyHandler.leftPressed || keyHandler.rightPressed) {
+
+            if (keyHandler.upPressed) {
                 direction = "up";
 
-
-            } else if (keyHandler.downPressed == true) {
+            } else if (keyHandler.downPressed) {
                 direction = "down";
 
-
-            } else if (keyHandler.leftPressed == true) {
+            } else if (keyHandler.leftPressed) {
                 direction = "left";
 
-            } else if (keyHandler.rightPressed == true) {
+            } else if (keyHandler.rightPressed) {
                 direction = "right";
 
             }
             setCollisionOn(false);
         }
-        if (setCollisionOn(false)) {
+        if (!setCollisionOn(true)) {
 
             switch (direction) {
                 case "up":
@@ -156,6 +155,10 @@ public class Player extends Entity {
         }
 
         g2.drawImage(image, playerScreenX, playerScreenY, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
+
+//        デバッグ
+        g2.setColor(Color.red);
+        g2.drawRect(playerScreenX + solidArea.x, playerScreenY + solidArea.y, solidArea.width, solidArea.height);
     }
 
     public int getPlayerScreenX() {

@@ -1,6 +1,7 @@
-package main;
+package main.gamemain;
 
 import main.entity.Entity;
+import main.gamemain.GamePanel;
 
 public class CollisionChecker {
     GamePanel gamePanel;

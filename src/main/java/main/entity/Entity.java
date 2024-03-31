@@ -1,6 +1,6 @@
 package main.entity;
 
-import main.GamePanel;
+import main.gamemain.GamePanel;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -19,16 +19,16 @@ public class Entity {
 
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
 
-    private int solidAreaDefaultX;
-    private int solidAreaDefaultY;
+    public int solidAreaDefaultX;
+    public int solidAreaDefaultY;
 
     public int spriteCounter = 0;
 
     public int spriteNum = 1;
 
-    private boolean collisionOn = false;
+    private boolean collisionOn;
 
-    private Rectangle solidArea = new Rectangle(0, 0, 48, 48);
+    public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
 
     public Entity(GamePanel gamePanel) {
         this.gamePanel = gamePanel;

@@ -1,4 +1,6 @@
-package main;
+package main.gamemain;
+
+import main.gamemain.GamePanel;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
