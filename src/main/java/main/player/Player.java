@@ -26,7 +26,7 @@ public class Player extends Entity {
         playerScreenY = (gamePanel.getScreenHeight() / 2) - gamePanel.getTileSize();
 
         // この四角形をインスタンス化するときにコンストラクタに4つのパラメーターを渡せる。
-        solidArea = new Rectangle();
+        setSolidArea(new Rectangle());
         getSolidArea().x = 8;
         getSolidArea().y = 16;
 
@@ -48,8 +48,8 @@ public class Player extends Entity {
         setWorldX(gamePanel.getTileSize() * 23);
         setWorldY(gamePanel.getTileSize() * 21);
 
-        speed = 4;
-        direction = "down";
+        setSpeed(4);
+        setDirection("down");
     }
 
     public void loadPlayerImage() {
@@ -79,67 +79,66 @@ public class Player extends Entity {
                 keyHandler.leftPressed || keyHandler.rightPressed) {
 
             if (keyHandler.upPressed) {
-                direction = "up";
+                setDirection("up");
+                setWorldY(getWorldY() - getSpeed());
 
             } else if (keyHandler.downPressed) {
-                direction = "down";
+                setDirection("down");
+                setWorldY(getWorldY() + getSpeed());
 
             } else if (keyHandler.leftPressed) {
-                direction = "left";
+                setDirection("left");
+                setWorldX(getWorldX() - getSpeed());
 
-            } else if (keyHandler.rightPressed) {
-                direction = "right";
-
+            } else {
+                setDirection("right");
+                setWorldX(getWorldX() + getSpeed());
             }
-            setCollisionOn(false);
+            setCollisionOn(getCollisionOn());
         }
-        if (!setCollisionOn(true)) {
+        // spriteCounterは、1フレーム（1ループ）ごとに1増加し,このカウンターを使って、
+        // 10フレームごとにプレイヤーのアニメーションを変更。
 
-            switch (direction) {
-                case "up":
-                    setWorldY(getWorldY() - speed); // プレイヤーのY座標からプレイヤーの速度の値を引く形になります。
-                    break;
-                case "down":
-                    setWorldY(getWorldY() + speed); // プレイヤーのY座標からプレイヤーの速度の値を足す形になります。
-                    break;
-                case "left":
-                    setWorldX(getWorldX() - speed); // プレイヤーのX座標からプレイヤーの速度の値を引く形になります。
-                    break;
-                case "right":
-                    setWorldX(getWorldX() + speed); // プレイヤーのX座標からプレイヤーの速度の値を足す形になります。
-                    break;
+        spriteCounter++; // 1フレーム(ループ)ごとにこのカウンターが1増加する。
 
+        // spriteNum 1と2の切り替えはスライムモンスターのup1とup2を切り替える
+        // これにより、プレイヤーの画像が交互に表示されることでアニメーションが実現。
+
+        if (spriteCounter > 12) { // 10フレームごとにプレイヤーの画像が変わる。
+            if (spriteNum == 1) {
+                spriteNum = 2;
+            } else if (spriteNum == 2) {
+                spriteNum = 1;
             }
+            spriteCounter = 0; // spriteCounterをリセット。
         }
     }
+
 
     public void draw(Graphics2D g2) {
 
         BufferedImage image = null;
 
 
-        switch (direction) {
+        switch (getDirection()) {
             case "up":
                 if (spriteNum == 1) {
                     image = up1;
-                }
-                if (spriteNum == 2) {
+                } else if (spriteNum == 2) {
                     image = up2;
                 }
                 break;
             case "down":
                 if (spriteNum == 1) {
                     image = down1;
-                }
-                if (spriteNum == 2) {
+                } else if (spriteNum == 2) {
                     image = down2;
                 }
                 break;
             case "left":
                 if (spriteNum == 1) {
                     image = left1;
-                }
-                if (spriteNum == 2) {
+                } else if (spriteNum == 2) {
                     image = left2;
                 }
                 break;
@@ -147,11 +146,9 @@ public class Player extends Entity {
 
                 if (spriteNum == 1) {
                     image = right1;
-                }
-                if (spriteNum == 2) {
+                } else if (spriteNum == 2) {
                     image = right2;
                 }
-
         }
 
         g2.drawImage(image, playerScreenX, playerScreenY, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
