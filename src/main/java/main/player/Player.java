@@ -80,37 +80,41 @@ public class Player extends Entity {
 
             if (keyHandler.upPressed) {
                 setDirection("up");
-                setWorldY(getWorldY() - getSpeed());
-
             } else if (keyHandler.downPressed) {
                 setDirection("down");
-                setWorldY(getWorldY() + getSpeed());
-
             } else if (keyHandler.leftPressed) {
                 setDirection("left");
-                setWorldX(getWorldX() - getSpeed());
-
             } else {
                 setDirection("right");
-                setWorldX(getWorldX() + getSpeed());
             }
-            setCollisionOn(getCollisionOn());
-        }
-        // spriteCounterは、1フレーム（1ループ）ごとに1増加し,このカウンターを使って、
-        // 10フレームごとにプレイヤーのアニメーションを変更。
+            setCollisionOn(false);
+            gamePanel.collisionChecker.checkTile(this);
 
-        spriteCounter++; // 1フレーム(ループ)ごとにこのカウンターが1増加する。
+            if (!collisionOn) {
 
-        // spriteNum 1と2の切り替えはスライムモンスターのup1とup2を切り替える
-        // これにより、プレイヤーの画像が交互に表示されることでアニメーションが実現。
-
-        if (spriteCounter > 12) { // 10フレームごとにプレイヤーの画像が変わる。
-            if (spriteNum == 1) {
-                spriteNum = 2;
-            } else if (spriteNum == 2) {
-                spriteNum = 1;
+                switch (getDirection()) {
+                    case "up" -> setWorldY(getWorldY() - getSpeed()); // プレイヤーのY座標からプレイヤーの速度の値を引く形。
+                    case "down" -> setWorldY(getWorldY() + getSpeed()); // プレイヤーのY座標からプレイヤーの速度の値を足す形。
+                    case "left" -> setWorldX(getWorldX() - getSpeed()); // プレイヤーのX座標からプレイヤーの速度の値を引く形。
+                    case "right" -> setWorldX(getWorldX() + getSpeed()); // プレイヤーのX座標からプレイヤーの速度の値を足す形。
+                }
             }
-            spriteCounter = 0; // spriteCounterをリセット。
+            // spriteCounterは、1フレーム（1ループ）ごとに1増加し,このカウンターを使って、
+            // 10フレームごとにプレイヤーのアニメーションを変更。
+
+            spriteCounter++; // 1フレーム(ループ)ごとにこのカウンターが1増加する。
+
+            // spriteNum 1と2の切り替えはスライムモンスターのup1とup2を切り替える
+            // これにより、プレイヤーの画像が交互に表示されることでアニメーションが実現。
+
+            if (spriteCounter > 12) { // 10フレームごとにプレイヤーの画像が変わる。
+                if (spriteNum == 1) {
+                    spriteNum = 2;
+                } else if (spriteNum == 2) {
+                    spriteNum = 1;
+                }
+                spriteCounter = 0; // spriteCounterをリセット。
+            }
         }
     }
 

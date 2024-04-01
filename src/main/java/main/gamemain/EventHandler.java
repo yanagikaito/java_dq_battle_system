@@ -25,7 +25,7 @@ public class EventHandler {
 
     public EventHandler(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
-
+        battleScreen = new BattleScreen(gamePanel);
         // マップ上のすべてのタイルにイベント矩形ができる。
         // このソリッドエリアをeventRect[][]に設定。
         eventRect = new EventRect[gamePanel.getMaxWorldCol()][gamePanel.getMaxWorldRow()];
@@ -71,7 +71,7 @@ public class EventHandler {
         }
 
         if (hit(34, 11, "どれか")) {
-            battleScreen.drawBattleDialogueScreen(34,11,gamePanel.getBattleState());
+            battleScreen.drawBattleDialogueScreen(34, 11, gamePanel.getBattleState());
         }
     }
 
@@ -117,7 +117,7 @@ public class EventHandler {
         // このクラスの他のメソッドでこのg2を使用できる。
         this.graphics2D = graphics2D;
 
-        // タイトル画面
+        // バトル画面
         if (gamePanel.getGameState() == gamePanel.getBattleState()) {
             battleScreen.drawBattleScreen(randomHitColRow, randomHitColRow, gamePanel.getBattleState());
         }
