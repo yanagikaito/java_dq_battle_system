@@ -13,9 +13,9 @@ public class Entity {
 
     private int worldY;
 
-    public int speed;
+    private int speed;
 
-    public String direction = "down";
+    private String direction = "down";
 
     public BufferedImage up1, up2, down1, down2, left1, left2, right1, right2;
 
@@ -25,6 +25,8 @@ public class Entity {
     public int spriteCounter = 0;
 
     public int spriteNum = 1;
+
+    public int standCounter;
 
     private boolean collisionOn;
 
@@ -39,36 +41,7 @@ public class Entity {
         setCollisionOn(false);
 
         gamePanel.collisionChecker.checkTile(this);
-
-        switch (direction) {
-            case "up":
-                worldY -= speed; // プレイヤーのY座標からプレイヤーの速度の値を引く形。
-                break;
-            case "down":
-                worldY += speed; // プレイヤーのY座標からプレイヤーの速度の値を足す形。
-                break;
-            case "left":
-                worldX -= speed; // プレイヤーのX座標からプレイヤーの速度の値を引く形。
-                break;
-            case "right":
-                worldX += speed; // プレイヤーのX座標からプレイヤーの速度の値を足す形。
-                break;
-
-        }
-        // 1フレーム(ループ)ごとにこのカウンターが1増加する。
-        spriteCounter++;
-        // 10フレームごとにプレイヤーの画像が変わる。
-        if (spriteCounter > 12) {
-            if (spriteNum == 1) {
-                spriteNum = 2;
-            } else if (spriteNum == 2) {
-                spriteNum = 1;
-            }
-            // spriteCounterをリセット。
-            spriteCounter = 0;
-        }
     }
-
 
     public int getWorldX() {
         return worldX;
@@ -116,5 +89,21 @@ public class Entity {
 
     public boolean setCollisionOn(boolean collisionOn) {
         return this.collisionOn = collisionOn;
+    }
+
+    public int getSpeed() {
+        return speed;
+    }
+
+    public int setSpeed(int speed) {
+        return this.speed = speed;
+    }
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public String setDirection(String direction) {
+        return this.direction = direction;
     }
 }
