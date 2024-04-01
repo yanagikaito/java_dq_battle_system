@@ -42,14 +42,11 @@ public class BattleScreen {
 
         // 戦闘画面
         if (battleScreenState == 0) {
-            drawBattleScreen();
             drawDialogueScreen();
             drawCommandScreen();
-            drawBattleDialogueScreen();
 //          drawDebugScreen();
         }
         if (battleScreenState == 1) {
-            drawBattleScreen();
             drawDialogueScreen();
             drawCommandScreen();
             drawMonsterTextDialogueScreen();
@@ -57,7 +54,7 @@ public class BattleScreen {
     }
 
 
-    public void drawBattleScreen() {
+    public void drawBattleScreen(int col,int row,int gamestate) {
 
         Random random = new Random();
         int randomMonster = random.nextInt(3) + 1;
@@ -240,7 +237,7 @@ public class BattleScreen {
 //
 //    }
 
-    public void drawBattleDialogueScreen() {
+    public void drawBattleDialogueScreen(int col, int row, int gameState) {
 
         // ウィンドウ
         int x = gamePanel.getTileSize() * 5;
