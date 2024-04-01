@@ -62,6 +62,8 @@ public class GamePanel extends JPanel implements Runnable {
 
     public CollisionChecker collisionChecker = new CollisionChecker(this);
 
+    public EventHandler eventHandler = new EventHandler(this);
+
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.BLACK);
@@ -144,6 +146,7 @@ public class GamePanel extends JPanel implements Runnable {
         if (gameState == playState) {
             tileManager.draw(g2);
             player.draw(g2);
+            eventHandler.draw(g2);
         }
         if (gameState == battleState) {
             // 戦闘画面表示
