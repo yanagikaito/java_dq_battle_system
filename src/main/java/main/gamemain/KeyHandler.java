@@ -5,21 +5,72 @@ import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
 
-    GamePanel gamePanel;
+    /**
+     * .
+     * gamePanelをインスタンス変数宣言
+     */
+    private final GamePanel gamePanel;
 
-    public boolean upPressed, downPressed, leftPressed, rightPressed, enterPressed;
+    /**
+     * .
+     * キー　upPressed;
+     */
+    private boolean upPressed;
 
-    public KeyHandler(GamePanel gamePanel) {
-        this.gamePanel = gamePanel;
+    /**
+     * .
+     * キー　downPressed;
+     */
+    private boolean downPressed;
+
+    /**
+     * .
+     * キー　leftPressed;
+     */
+    private boolean leftPressed;
+
+    /**
+     * .
+     * キー　rightPressed;
+     */
+    private boolean rightPressed;
+
+    /**
+     * .
+     * キー　enterPressed;
+     */
+    private boolean enterPressed;
+
+    /**
+     * .
+     * KeyHandlerコンストラクタを作成し,初期化
+     *
+     * @param panel = gamePanel
+     */
+    public KeyHandler(final GamePanel panel) {
+        this.gamePanel = panel;
     }
 
+    /**
+     * .
+     * keyTypedは使わない
+     *
+     * @param e the event to be processed
+     */
     @Override
-    public void keyTyped(KeyEvent e) {
+    public void keyTyped(final KeyEvent e) {
 
     }
 
+    /**
+     * .
+     * keyPressedは押されたときに反応
+     *
+     * @param e the event to be processed
+     */
+
     @Override
-    public void keyPressed(KeyEvent e) {
+    public void keyPressed(final KeyEvent e) {
 
         int code = e.getKeyCode();
 
@@ -66,9 +117,15 @@ public class KeyHandler implements KeyListener {
         }
     }
 
+    /**
+     * .
+     * keyReleasedは離した時に反応
+     *
+     * @param e the event to be released
+     */
 
     @Override
-    public void keyReleased(KeyEvent e) {
+    public void keyReleased(final KeyEvent e) {
 
         int code = e.getKeyCode();
 
@@ -89,5 +146,55 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_ENTER) {
             enterPressed = false;
         }
+    }
+
+    /**
+     * .
+     * ゲッター getUp
+     *
+     * @return this.upPressed;
+     */
+    public Boolean getUp() {
+        return this.upPressed;
+    }
+
+    /**
+     * .
+     * ゲッター getDown
+     *
+     * @return this.upPressed;
+     */
+    public Boolean getDown() {
+        return this.downPressed;
+    }
+
+    /**
+     * .
+     * ゲッター getLeft
+     *
+     * @return this.upPressed;
+     */
+    public Boolean getLeft() {
+        return this.leftPressed;
+    }
+
+    /**
+     * .
+     * ゲッター getRight
+     *
+     * @return this.upPressed;
+     */
+    public Boolean getRight() {
+        return this.rightPressed;
+    }
+
+    /**
+     * .
+     * ゲッター getEnter
+     *
+     * @return this.upPressed;
+     */
+    public Boolean getEnter() {
+        return this.enterPressed;
     }
 }

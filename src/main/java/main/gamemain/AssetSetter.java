@@ -1,6 +1,5 @@
 package main.gamemain;
 
-import main.gamemain.GamePanel;
 import main.monster.GreenSlime;
 
 import java.awt.Point;
@@ -29,11 +28,11 @@ public class AssetSetter {
         int startX = centerX - (numberOfMonsters / 2 * SPACING) + (numberOfMonsters % 2 == 0 ? SPACING / 2 : 0);
 
         for (int i = 0; i < numberOfMonsters; i++) {
-            gamePanel.monsterGreenSlime[i] = createGreenSlime(startX, i);
+            gamePanel.getGreenSlime()[i] = createGreenSlime(startX, i);
         }
     }
 
-    private GreenSlime createGreenSlime(int startX, int index) {
+    private GreenSlime createGreenSlime(final int startX, final int index) {
         int screenY = (gamePanel.getScreenHeight() / 2) - gamePanel.getTileSize();
         // 各モンスターのX座標を等間隔に設定
         int screenX = startX + index * SPACING;

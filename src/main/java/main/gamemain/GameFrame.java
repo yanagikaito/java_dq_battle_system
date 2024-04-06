@@ -1,10 +1,19 @@
+
 package main.gamemain;
 
-import javax.swing.*;
+import javax.swing.JFrame;
 
 public class GameFrame extends JFrame {
-    GamePanel gamePanel = new GamePanel();
+    /**
+     * .
+     * GamePanelをインスタンス化。
+     */
+    private final GamePanel gamePanel = new GamePanel();
 
+    /**
+     * .
+     * GameFrameコンストラクタを作成し,初期化
+     */
     public GameFrame() {
         // Xボタン追加 ウィンドウを閉じることができる。
         super.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

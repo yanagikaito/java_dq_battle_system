@@ -1,3 +1,4 @@
+
 package main.gamemain;
 
 import main.monster.GreenSlime;
@@ -5,65 +6,162 @@ import main.player.Player;
 import main.tile.TileManager;
 import main.ui.BattleScreen;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+import java.awt.Dimension;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 
 public class GamePanel extends JPanel implements Runnable {
 
-    // 16x16のタイル プレイヤーやNPC,背景などのサイズ
+    /**
+     * .
+     * 16x16のタイル プレイヤーやNPC,背景などのサイズ
+     */
     private final int originalTileSize = 16;
 
-    // scale スケーリング
+    /**
+     * .
+     * scale スケーリング
+     */
     private final int scale = 3;
 
-    // 48x48のタイル
+    /**
+     * .
+     * 48x48のタイル
+     */
     private int tileSize = originalTileSize * scale;
 
-    // 水平に16　垂直に12
-    // 画面比率は 4 : 3
-
-    //横タイル16個
+    /**
+     * .
+     * 横タイル16個
+     */
     private final int maxScreenRow = 16;
 
-    //縦タイル12個
+    /**
+     * .
+     * 縦タイル12個
+     */
     private final int maxScreenCol = 12;
 
-    // ゲーム画面の横のサイズ768ピクセル
+    /**
+     * .
+     * ゲーム画面の横のサイズ768ピクセル
+     */
     private final int screenWidth = tileSize * maxScreenRow;
 
-    // ゲーム画面の高さは576ピクセル
+    /**
+     * .
+     * ゲーム画面の高さは576ピクセル
+     */
     private final int screenHeight = tileSize * maxScreenCol;
 
+    /**
+     * .
+     * 最大横タイル50個
+     */
     private final int maxWorldRow = 50;
+
+    /**
+     * .
+     * 最大縦タイル50個
+     */
     private final int maxWorldCol = 50;
 
-    // FPS
-    private int FPS = 60;
+    /**
+     * .
+     * FPS
+     */
+    private final int fps = 60;
 
+    /**
+     * .
+     * 10憶ナノ秒
+     */
+    private final int nanosecond = 1000000000;
+
+    /**
+     * .
+     * ゲームスレッド
+     */
     private Thread gameThread;
 
+    /**
+     * .
+     * ゲームの状態
+     */
     private int gameState;
 
+    /**
+     * .
+     * バトルの状態
+     */
     private final int battleState = 1;
 
+    /**
+     * .
+     * プレイヤーの状態
+     */
     private final int playState = 0;
 
+    /**
+     * .
+     * モンスターの種類
+     */
+    private final int monsterType = 10;
+
+    /**
+     * .
+     * BattleScreenをインスタンス化
+     */
     private BattleScreen battleScreen = new BattleScreen(this);
 
+    /**
+     * .
+     * KeyHandlerをインスタンス化
+     */
     private KeyHandler keyHandler = new KeyHandler(this);
 
-    private Player player = new Player(this, keyHandler);
+    /**
+     * .
+     * Playerをインスタンス化
+     */
+    private final Player player = new Player(this, keyHandler);
 
-    public GreenSlime[] monsterGreenSlime = new GreenSlime[10];
+    /**
+     * .
+     * GreenSlime[]をインスタンス化
+     */
+    private final GreenSlime[] monsterGreenSlime = new GreenSlime[monsterType];
 
-    public AssetSetter assetSetter = new AssetSetter(this);
+    /**
+     * .
+     * AssetSetterをインスタンス化
+     */
+    private final AssetSetter assetSetter = new AssetSetter(this);
 
-    private TileManager tileManager = new TileManager(this);
+    /**
+     * .
+     * TileManagerをインスタンス化
+     */
+    private final TileManager tileManager = new TileManager(this);
 
-    public CollisionChecker collisionChecker = new CollisionChecker(this);
+    /**
+     * .
+     * CollisionCheckerをインスタンス化
+     */
+    private final CollisionChecker cChecker = new CollisionChecker(this);
 
-    public EventHandler eventHandler = new EventHandler(this);
+    /**
+     * .
+     * EventHandlerをインスタンス化
+     */
+    private final EventHandler eventHandler = new EventHandler(this);
 
+    /**
+     * .
+     * GamePanelコンストラクタを作成し,初期化。
+     */
     public GamePanel() {
         this.setPreferredSize(new Dimension(screenWidth, screenHeight));
         this.setBackground(Color.BLACK);
@@ -74,11 +172,20 @@ public class GamePanel extends JPanel implements Runnable {
         this.startGameThread();
     }
 
+    /**
+     * .
+     * セットしたモンスターやNPCを呼び出す
+     */
     public void setupGame() {
 
         assetSetter.setMonster();
 
     }
+
+    /**
+     * .
+     * Threadをインスタンス化して,gameThreadを開始する
+     */
 
     public void startGameThread() {
 
@@ -88,9 +195,14 @@ public class GamePanel extends JPanel implements Runnable {
 
     }
 
+    /**
+     * .
+     * runメソッドの中で1秒間に60回画像更新
+     */
+
     @Override
     public void run() {
-        double drawInterval = 1000000000 / FPS;
+        double drawInterval = nanosecond / fps;
         double delta = 0;
         long lastTime = System.nanoTime();
         long currentTime;
@@ -113,13 +225,18 @@ public class GamePanel extends JPanel implements Runnable {
                 drawCount++;
             }
 
-            if (timer >= 1000000000) {
+            if (timer >= nanosecond) {
                 System.out.println("FPS:" + drawCount);
                 drawCount = 0;
                 timer = 0;
             }
         }
     }
+
+    /**
+     * .
+     * プレイヤーやNPCやモンスターなどの画像を更新
+     */
 
     public void update() {
 
@@ -136,7 +253,14 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
-    public void paintComponent(Graphics g) {
+    /**
+     * .
+     * 画像を描画
+     *
+     * @param g the <code>Graphics</code> object to protect
+     */
+
+    public void paintComponent(final Graphics g) {
 
         // superというのはこのクラスの親クラスこの場合JPanelとなる
         super.paintComponent(g);
@@ -159,48 +283,147 @@ public class GamePanel extends JPanel implements Runnable {
         }
     }
 
+    /**
+     * .
+     * ゲッター getTileSize
+     *
+     * @return tileSize = 48;
+     */
 
     public int getTileSize() {
-        return tileSize;
+        return this.tileSize;
     }
 
-    public int setTileSize(int tileSize) {
-        return this.tileSize = tileSize;
+    /**
+     * .
+     * セッター setTileSize
+     *
+     * @param size = tileSize
+     * @return this.tileSize;
+     */
+
+    public int setTileSize(final int size) {
+        this.tileSize = size;
+        return this.tileSize;
     }
 
+    /**
+     * .
+     * ゲッター getGameState
+     *
+     * @return this.gameState;
+     */
     public int getGameState() {
-        return gameState;
+        return this.gameState;
     }
+
+    /**
+     * .
+     * ゲッター getBattleState
+     *
+     * @return this.battleState;
+     */
 
     public int getBattleState() {
-        return battleState;
+        return this.battleState;
     }
+
+    /**
+     * .
+     * ゲッター getScreenWidth
+     *
+     * @return this.screenWidth;
+     */
 
     public int getScreenWidth() {
-        return screenWidth;
+        return this.screenWidth;
     }
+
+    /**
+     * .
+     * ゲッター getScreenHeight
+     *
+     * @return this.screenHeight;
+     */
 
     public int getScreenHeight() {
-        return screenHeight;
+        return this.screenHeight;
     }
+
+    /**
+     * .
+     * ゲッター getBattleScreen
+     *
+     * @return this.battleScreen;
+     */
 
     public BattleScreen getBattleScreen() {
-        return battleScreen;
+        return this.battleScreen;
     }
+
+    /**
+     * .
+     * ゲッター getPlayer
+     *
+     * @return this.player;
+     */
 
     public Player getPlayer() {
-        return player;
+        return this.player;
     }
+
+    /**
+     * .
+     * ゲッター getMaxWorldCol
+     *
+     * @return this.maxWorldCol;
+     */
 
     public int getMaxWorldCol() {
-        return maxWorldCol;
+        return this.maxWorldCol;
     }
+
+    /**
+     * .
+     * ゲッター getMaxWorldRow
+     *
+     * @return this.maxWorldRow;
+     */
 
     public int getMaxWorldRow() {
-        return maxWorldRow;
+        return this.maxWorldRow;
     }
 
+    /**
+     * .
+     * ゲッター getTileManager
+     *
+     * @return this.tileManager
+     */
+
     public TileManager getTileManager() {
-        return tileManager;
+        return this.tileManager;
+    }
+
+    /**
+     * .
+     * ゲッター getCchecker
+     *
+     * @return this.cChecker
+     */
+
+    public CollisionChecker getCchecker() {
+        return this.cChecker;
+    }
+
+    /**
+     * .
+     * ゲッター getGreenSlime
+     *
+     * @return this.monsterGreenSlime
+     */
+
+    public GreenSlime[] getGreenSlime() {
+        return this.monsterGreenSlime;
     }
 }

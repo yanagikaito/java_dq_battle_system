@@ -1,7 +1,17 @@
+
 package main.gamemain;
 
-public class Main {
-    public static void main(String[] args) {
+final class Main {
+    private Main() {
+    }
+
+    /**
+     * .
+     * ゲームのメイン処理
+     *
+     * @param args
+     */
+    public static void main(final String[] args) {
         GamePanel gamePanel = new GamePanel();
         GameFrame window = new GameFrame();
     }
