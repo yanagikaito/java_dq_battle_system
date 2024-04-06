@@ -1,3 +1,4 @@
+
 package main.player;
 
 import main.gamemain.GamePanel;
@@ -11,60 +12,140 @@ import java.io.IOException;
 
 public class Player extends Entity {
 
-    GamePanel gamePanel;
+    /**
+     * .
+     * gamePanelをインスタンス変数宣言
+     */
+    private final GamePanel gamePanel;
 
-    KeyHandler keyHandler;
+    /**
+     * .
+     * keyHandlerをインスタンス変数宣言
+     */
+    private final KeyHandler keyHandler;
 
-    private final int playerScreenX;
-    private final int playerScreenY;
+    /**
+     * .
+     * playerのScreenXをインスタンス変数宣言
+     */
+    private final int pScreenX;
 
-    public Player(GamePanel gamePanel, KeyHandler keyHandler) {
-        super(gamePanel);
-        this.gamePanel = gamePanel;
-        this.keyHandler = keyHandler;
-        playerScreenX = (gamePanel.getScreenWidth() / 2) - gamePanel.getTileSize();
-        playerScreenY = (gamePanel.getScreenHeight() / 2) - gamePanel.getTileSize();
+    /**
+     * .
+     * playerのScreenYをインスタンス変数宣言
+     */
+    private final int pScreenY;
+
+    /**
+     * .
+     * プレイヤーの実体の座標X
+     */
+    private final int playerSolidAreaX = 8;
+
+    /**
+     * .
+     * プレイヤーの実体の座標Y
+     */
+    private final int playerSolidAreaY = 16;
+
+    /**
+     * .
+     * Rectangleの幅
+     */
+
+    private final int rWidth = 32;
+
+    /**
+     * .
+     * Rectangleの高さ
+     */
+
+    private final int rHeight = 32;
+
+    /**
+     * .
+     * mapの配列の横の23番目
+     */
+
+    private final int mapXplayer = 23;
+
+    /**
+     * .
+     * mapの配列の縦の21番目
+     */
+
+    private final int mapYplayer = 21;
+
+    /**
+     * .
+     * プレイヤーのスピード
+     */
+
+    private final int playerSpeed = 4;
+
+
+    /**
+     * .
+     * Playerのコンストラクタを作成し,gamePanelとkeyHandlerを初期化
+     *
+     * @param panel = GamePanel
+     * @param key   = keyHandler
+     */
+    public Player(final GamePanel panel, final KeyHandler key) {
+        super(panel);
+        this.gamePanel = panel;
+        this.keyHandler = key;
+        pScreenX = (gamePanel.getScreenWidth() / 2) - gamePanel.getTileSize();
+        pScreenY = (gamePanel.getScreenHeight() / 2) - gamePanel.getTileSize();
 
         // この四角形をインスタンス化するときにコンストラクタに4つのパラメーターを渡せる。
         setSolidArea(new Rectangle());
-        getSolidArea().x = 8;
-        getSolidArea().y = 16;
+        getSolidArea().x = playerSolidAreaX;
+        getSolidArea().y = playerSolidAreaY;
 
         solidAreaDefaultX = solidArea.x;
         solidAreaDefaultY = solidArea.y;
 
-        getSolidArea().width = 32;
-        getSolidArea().height = 32;
+        getSolidArea().width = rWidth;
+        getSolidArea().height = rHeight;
 
         // コンストラクタの中にメソッド宣言すれば初期値が設定される。
         setDefaultValues();
         loadPlayerImage();
     }
 
+    /**
+     * .
+     * プレイヤーの開始位置の座標の設定
+     */
     public void setDefaultValues() {
 
         // 開始位置の座標
         // worldX 1104 worldY 1008
-        setWorldX(gamePanel.getTileSize() * 23);
-        setWorldY(gamePanel.getTileSize() * 21);
+        setWorldX(gamePanel.getTileSize() * mapXplayer);
+        setWorldY(gamePanel.getTileSize() * mapYplayer);
 
-        setSpeed(4);
+        setSpeed(playerSpeed);
         setDirection("down");
     }
 
+    /**
+     * .
+     * プレイヤーの画像を読み込む
+     */
     public void loadPlayerImage() {
 
 
         try {
 
-            up1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/image-up-1.gif"));
-            up2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/image-up-2.gif"));
-            down1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/image-down-1.gif"));
-            down2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/image-down-2.gif"));
-            left1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/image-left-1.gif"));
-            left2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/image-left-2.gif"));
-            right1 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/image-right-1.gif"));
-            right2 = ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/image-right-2.gif"));
+            setUp1(ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/image-up-1.gif")));
+            setUp2(ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/image-up-2.gif")));
+            setDown1(ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/image-down-1.gif")));
+            setDown2(ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/image-down-2.gif")));
+            setLeft1(ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/image-left-1.gif")));
+            setLeft2(ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/image-left-2.gif")));
+            setRight1(ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/image-right-1.gif")));
+            setRight2(ImageIO.read(getClass().getClassLoader().getResourceAsStream("player/image-right-2.gif")));
 
 
         } catch (IOException e) {
@@ -73,22 +154,26 @@ public class Player extends Entity {
         }
     }
 
+    /**
+     * .
+     * それぞれのキーが押されるたびにプレイヤーを更新する
+     */
     public void update() {
 
-        if (keyHandler.upPressed || keyHandler.downPressed ||
-                keyHandler.leftPressed || keyHandler.rightPressed) {
+        if (keyHandler.getUp() || keyHandler.getDown()
+                || keyHandler.getLeft() || keyHandler.getRight()) {
 
-            if (keyHandler.upPressed) {
+            if (keyHandler.getUp()) {
                 setDirection("up");
-            } else if (keyHandler.downPressed) {
+            } else if (keyHandler.getDown()) {
                 setDirection("down");
-            } else if (keyHandler.leftPressed) {
+            } else if (keyHandler.getLeft()) {
                 setDirection("left");
             } else {
                 setDirection("right");
             }
             setCollisionOn(false);
-            gamePanel.collisionChecker.checkTile(this);
+            gamePanel.getCchecker().checkTile(this);
 
             if (!collisionOn) {
 
@@ -119,7 +204,7 @@ public class Player extends Entity {
     }
 
 
-    public void draw(Graphics2D g2) {
+    public void draw(final Graphics2D g2) {
 
         BufferedImage image = null;
 
@@ -127,46 +212,47 @@ public class Player extends Entity {
         switch (getDirection()) {
             case "up":
                 if (spriteNum == 1) {
-                    image = up1;
+                    image = getUp1();
                 } else if (spriteNum == 2) {
-                    image = up2;
+                    image = getUp2();
                 }
                 break;
             case "down":
                 if (spriteNum == 1) {
-                    image = down1;
+                    image = getDown1();
                 } else if (spriteNum == 2) {
-                    image = down2;
+                    image = getDown2();
                 }
                 break;
             case "left":
                 if (spriteNum == 1) {
-                    image = left1;
+                    image = getLeft1();
                 } else if (spriteNum == 2) {
-                    image = left2;
+                    image = getLeft2();
                 }
                 break;
             case "right":
 
                 if (spriteNum == 1) {
-                    image = right1;
+                    image = getRight1();
                 } else if (spriteNum == 2) {
-                    image = right2;
+                    image = getRight2();
                 }
         }
 
-        g2.drawImage(image, playerScreenX, playerScreenY, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
-
-//        デバッグ
-        g2.setColor(Color.red);
-        g2.drawRect(playerScreenX + solidArea.x, playerScreenY + solidArea.y, solidArea.width, solidArea.height);
+        g2.drawImage(image, pScreenX, pScreenY, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
     }
 
+//        デバッグ
+//        g2.setColor(Color.red);
+//        g2.drawRect(pScreenX + solidArea.x, pScreenY + solidArea.y, solidArea.width, solidArea.height);
+//    }
+
     public int getPlayerScreenX() {
-        return playerScreenX;
+        return pScreenX;
     }
 
     public int getPlayerScreenY() {
-        return playerScreenY;
+        return pScreenY;
     }
 }
