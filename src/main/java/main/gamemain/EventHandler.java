@@ -51,7 +51,6 @@ public class EventHandler {
     }
 
     public void checkEvent() {
-
         int randomHitCol = 0;
         int randomHitRow = 0;
 
@@ -71,7 +70,7 @@ public class EventHandler {
         }
 
         if (hit(34, 11, "どれか")) {
-            battleScreen.drawBattleDialogueScreen(34, 11, gamePanel.getBattleState());
+            battleScreen.draw(34, 11, gamePanel.setGameState(gamePanel.getBattleState()), graphics2D);
         }
     }
 
@@ -115,11 +114,11 @@ public class EventHandler {
         randomHitColRow = random.nextInt(enemyRandom) + 1;
 
         // このクラスの他のメソッドでこのg2を使用できる。
-        this.graphics2D = graphics2D;
+        this.graphics2D = g2;
 
         // バトル画面
         if (gamePanel.getGameState() == gamePanel.getBattleState()) {
-            battleScreen.drawBattleScreen(randomHitColRow, randomHitColRow, gamePanel.getBattleState());
+            battleScreen.draw(34, 11, gamePanel.setGameState(gamePanel.getBattleState()), g2);
         }
     }
 }

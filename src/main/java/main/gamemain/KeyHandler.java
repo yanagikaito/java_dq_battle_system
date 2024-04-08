@@ -87,7 +87,7 @@ public class KeyHandler implements KeyListener {
             }
         }
         if (code == KeyEvent.VK_ENTER) {
-            // コマンド番号 コマンド番号がゼロの場合、次のコマンドを選択します。
+            // コマンド番号 コマンド番号がゼロの場合、次のコマンドを選択。
             if (gamePanel.getBattleScreen().getCommandNum() == 0) {
                 gamePanel.getBattleScreen().setBattleScreenState(1);
                 if (gamePanel.getBattleScreen().getCommandNum() < 0) {

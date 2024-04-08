@@ -6,7 +6,8 @@ import main.gamemain.KeyHandler;
 import main.entity.Entity;
 
 import javax.imageio.ImageIO;
-import java.awt.*;
+import java.awt.Rectangle;
+import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
@@ -82,6 +83,12 @@ public class Player extends Entity {
      */
 
     private final int playerSpeed = 4;
+
+    /**
+     * .
+     * プレイヤーの画像切り替え
+     */
+    private final int spriteChange = 12;
 
 
     /**
@@ -159,7 +166,6 @@ public class Player extends Entity {
      * それぞれのキーが押されるたびにプレイヤーを更新する
      */
     public void update() {
-
         if (keyHandler.getUp() || keyHandler.getDown()
                 || keyHandler.getLeft() || keyHandler.getRight()) {
 
@@ -174,7 +180,7 @@ public class Player extends Entity {
             }
             setCollisionOn(false);
             gamePanel.getCchecker().checkTile(this);
-
+            gamePanel.getEventHandler().checkEvent();
             if (!collisionOn) {
 
                 switch (getDirection()) {
@@ -192,7 +198,7 @@ public class Player extends Entity {
             // spriteNum 1と2の切り替えはスライムモンスターのup1とup2を切り替える
             // これにより、プレイヤーの画像が交互に表示されることでアニメーションが実現。
 
-            if (spriteCounter > 12) { // 10フレームごとにプレイヤーの画像が変わる。
+            if (spriteCounter > spriteChange) { // 10フレームごとにプレイヤーの画像が変わる。
                 if (spriteNum == 1) {
                     spriteNum = 2;
                 } else if (spriteNum == 2) {
@@ -203,6 +209,12 @@ public class Player extends Entity {
         }
     }
 
+    /**
+     * .
+     * プレイヤーの画像をそれぞれ表示する
+     *
+     * @param g2 = Graphics2D
+     */
 
     public void draw(final Graphics2D g2) {
 
@@ -248,10 +260,22 @@ public class Player extends Entity {
 //        g2.drawRect(pScreenX + solidArea.x, pScreenY + solidArea.y, solidArea.width, solidArea.height);
 //    }
 
+    /**
+     * .
+     * ゲッター プレイヤーのスクリーンX
+     *
+     * @return pScreenX;
+     */
     public int getPlayerScreenX() {
         return pScreenX;
     }
 
+    /**
+     * .
+     * ゲッター プレイヤーのスクリーンY
+     *
+     * @return pScreenY;
+     */
     public int getPlayerScreenY() {
         return pScreenY;
     }

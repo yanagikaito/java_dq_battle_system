@@ -96,13 +96,13 @@ public class GamePanel extends JPanel implements Runnable {
      * .
      * バトルの状態
      */
-    private final int battleState = 1;
+    private int battleState = 1;
 
     /**
      * .
      * プレイヤーの状態
      */
-    private final int playState = 0;
+    private int playState = 0;
 
     /**
      * .
@@ -271,10 +271,10 @@ public class GamePanel extends JPanel implements Runnable {
             tileManager.draw(g2);
             player.draw(g2);
             eventHandler.draw(g2);
-        }
-        if (gameState == battleState) {
+        } else if (gameState == battleState) {
+
             // 戦闘画面表示
-            battleScreen.draw(g2);
+            battleScreen.draw(34, 11, getBattleState(), g2);
             for (GreenSlime greenSlime : monsterGreenSlime) {
                 if (greenSlime != null) {
                     greenSlime.draw(g2);
@@ -314,6 +314,11 @@ public class GamePanel extends JPanel implements Runnable {
      * @return this.gameState;
      */
     public int getGameState() {
+        return this.gameState;
+    }
+
+    public int setGameState(int state) {
+        this.gameState = state;
         return this.gameState;
     }
 
@@ -425,5 +430,16 @@ public class GamePanel extends JPanel implements Runnable {
 
     public GreenSlime[] getGreenSlime() {
         return this.monsterGreenSlime;
+    }
+
+    /**
+     * .
+     * ゲッター getEventHandler
+     *
+     * @return this.eventHandler;
+     */
+
+    public EventHandler getEventHandler() {
+        return this.eventHandler;
     }
 }
