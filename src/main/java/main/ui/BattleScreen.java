@@ -29,11 +29,10 @@ public class BattleScreen {
         arial_80B = new Font("エリア", Font.BOLD, 80);
     }
 
-    public void draw(Graphics2D graphics2D) {
+    public void draw(int col, int row, int battleState, Graphics2D g2) {
 
         // このクラスの他のメソッドでこのg2を使用できるようになります。
-        this.graphics2D = graphics2D;
-
+        this.graphics2D = g2;
 
         // フォント設定 arialエリア
         // 色は白色に設定
@@ -42,11 +41,13 @@ public class BattleScreen {
 
         // 戦闘画面
         if (battleScreenState == 0) {
+            drawBattleScreen();
             drawDialogueScreen();
             drawCommandScreen();
 //          drawDebugScreen();
-        }
-        if (battleScreenState == 1) {
+            drawBattleDialogueScreen();
+        } else if (battleScreenState == 1) {
+            drawBattleScreen();
             drawDialogueScreen();
             drawCommandScreen();
             drawMonsterTextDialogueScreen();
@@ -54,7 +55,7 @@ public class BattleScreen {
     }
 
 
-    public void drawBattleScreen(int col,int row,int gamestate) {
+    public void drawBattleScreen() {
 
         Random random = new Random();
         int randomMonster = random.nextInt(3) + 1;
@@ -237,8 +238,7 @@ public class BattleScreen {
 //
 //    }
 
-    public void drawBattleDialogueScreen(int col, int row, int gameState) {
-
+    public void drawBattleDialogueScreen() {
         // ウィンドウ
         int x = gamePanel.getTileSize() * 5;
         int y = gamePanel.getTileSize() * 8;
@@ -258,7 +258,6 @@ public class BattleScreen {
     }
 
     public void drawMonsterTextDialogueScreen() {
-
         // ウィンドウ
         int x = gamePanel.getTileSize() * 5;
         int y = gamePanel.getTileSize() * 8;
@@ -335,7 +334,6 @@ public class BattleScreen {
     }
 
     public void drawBattleCommandWindow(int x, int y, int width, int height) {
-
         Color c = new Color(0, 0, 0, 0);
         graphics2D.setColor(c);
 
