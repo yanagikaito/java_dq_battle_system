@@ -112,9 +112,15 @@ public class GamePanel extends JPanel implements Runnable {
 
     /**
      * .
+     * AssetSetterをインスタンス化
+     */
+    private final AssetSetter assetSetter = new AssetSetter(this);
+
+    /**
+     * .
      * BattleScreenをインスタンス化
      */
-    private BattleScreen battleScreen = new BattleScreen(this);
+    private BattleScreen battleScreen = new BattleScreen(this, assetSetter);
 
     /**
      * .
@@ -136,12 +142,6 @@ public class GamePanel extends JPanel implements Runnable {
 
     /**
      * .
-     * AssetSetterをインスタンス化
-     */
-    private final AssetSetter assetSetter = new AssetSetter(this);
-
-    /**
-     * .
      * TileManagerをインスタンス化
      */
     private final TileManager tileManager = new TileManager(this);
@@ -156,7 +156,7 @@ public class GamePanel extends JPanel implements Runnable {
      * .
      * EventHandlerをインスタンス化
      */
-    private final EventHandler eventHandler = new EventHandler(this);
+    private final EventHandler eventHandler = new EventHandler(this, assetSetter);
 
     /**
      * .
