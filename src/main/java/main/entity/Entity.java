@@ -52,21 +52,21 @@ public class Entity {
         if (!collisionOn) {
 
             switch (direction) {
-                case "up" -> worldY -= speed; // プレイヤーのY座標からプレイヤーの速度の値を引く形になります。
-                case "down" -> worldY += speed; // プレイヤーのY座標からプレイヤーの速度の値を足す形になります。
-                case "left" -> worldX -= speed; // プレイヤーのX座標からプレイヤーの速度の値を引く形になります。
-                case "right" -> worldX += speed; // プレイヤーのX座標からプレイヤーの速度の値を足す形になります。
+                case "up" -> worldY -= speed; // プレイヤーのY座標からプレイヤーの速度の値を引く形。
+                case "down" -> worldY += speed; // プレイヤーのY座標からプレイヤーの速度の値を足す形。
+                case "left" -> worldX -= speed; // プレイヤーのX座標からプレイヤーの速度の値を引く形。
+                case "right" -> worldX += speed; // プレイヤーのX座標からプレイヤーの速度の値を足す形。
             }
         }
 
-        spriteCounter++; // 1フレーム(ループ)ごとにこのカウンターが1増加することになります。
-        if (spriteCounter > 12) { // 10フレームごとにプレイヤーの画像が変わるということです。
+        spriteCounter++; // 1フレーム(ループ)ごとにこのカウンターが1増加する。
+        if (spriteCounter > 12) { // 10フレームごとにプレイヤーの画像が変わる。
             if (spriteNum == 1) {
                 spriteNum = 2;
             } else if (spriteNum == 2) {
                 spriteNum = 1;
             }
-            spriteCounter = 0; // spriteCounterをリセットします。
+            spriteCounter = 0; // spriteCounterをリセット。
         }
     }
 
