@@ -11,6 +11,7 @@ import java.awt.Dimension;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.Random;
 
 public class GamePanel extends JPanel implements Runnable {
 
@@ -262,6 +263,16 @@ public class GamePanel extends JPanel implements Runnable {
 
     public void paintComponent(final Graphics g) {
 
+        Random random = new Random();
+
+        int randomHitCol = 0;
+        int randomHitRow = 0;
+
+        int enemyRandom = 50;
+
+        randomHitCol = random.nextInt(enemyRandom);
+        randomHitRow = random.nextInt(enemyRandom);
+
         // superというのはこのクラスの親クラスこの場合JPanelとなる
         super.paintComponent(g);
         //  GraphicsをGraphics2Dに変換したことを意味している
@@ -274,7 +285,7 @@ public class GamePanel extends JPanel implements Runnable {
         } else if (gameState == battleState) {
 
             // 戦闘画面表示
-            battleScreen.draw(34, 11, getBattleState(), g2);
+            battleScreen.draw(randomHitCol, randomHitRow, getBattleState(), g2);
             for (GreenSlime greenSlime : monsterGreenSlime) {
                 if (greenSlime != null) {
                     greenSlime.draw(g2);
