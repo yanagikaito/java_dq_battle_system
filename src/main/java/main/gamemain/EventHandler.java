@@ -10,6 +10,8 @@ public class EventHandler {
 
     Graphics2D graphics2D;
 
+    AssetSetter assetSetter;
+
     BattleScreen battleScreen;
 
     // 2次元の配列として使用し、コンストラクタの中でインスタンス化します。
@@ -23,9 +25,10 @@ public class EventHandler {
 
     Random random = new Random();
 
-    public EventHandler(GamePanel gamePanel) {
+    public EventHandler(GamePanel gamePanel, AssetSetter assetSetter) {
         this.gamePanel = gamePanel;
-        battleScreen = new BattleScreen(gamePanel);
+        this.assetSetter = assetSetter;
+        battleScreen = new BattleScreen(gamePanel, assetSetter);
         // マップ上のすべてのタイルにイベント矩形ができる。
         // このソリッドエリアをeventRect[][]に設定。
         eventRect = new EventRect[gamePanel.getMaxWorldCol()][gamePanel.getMaxWorldRow()];

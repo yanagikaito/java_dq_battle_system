@@ -1,5 +1,6 @@
 package main.ui;
 
+import main.gamemain.AssetSetter;
 import main.gamemain.GamePanel;
 
 import java.awt.*;
@@ -7,13 +8,14 @@ import java.util.Random;
 
 public class BattleScreen {
 
-    GamePanel gamePanel;
+    private GamePanel gamePanel;
 
-    Graphics2D graphics2D;
+    private Graphics2D graphics2D;
 
     // フォント 80BはBOLD
-    Font arial_40, arial_80B;
+    private Font arial_40, arial_80B;
 
+    private AssetSetter assetSetter;
     private int battleScreenState = 0;
 
     private String currentDialogue = "";
@@ -22,8 +24,9 @@ public class BattleScreen {
 
     private int monsterNum = 0;
 
-    public BattleScreen(GamePanel gamePanel) {
+    public BattleScreen(GamePanel gamePanel, AssetSetter assetSetter) {
         this.gamePanel = gamePanel;
+        this.assetSetter = assetSetter;
         // ゲームループが開始する前にインスタンス化を完了できるようにする。
         arial_40 = new Font("エリア", Font.PLAIN, 40);
         arial_80B = new Font("エリア", Font.BOLD, 80);
@@ -53,7 +56,6 @@ public class BattleScreen {
             drawMonsterTextDialogueScreen();
         }
     }
-
 
     public void drawBattleScreen() {
 
@@ -150,44 +152,23 @@ public class BattleScreen {
 
             graphics2D.setFont(graphics2D.getFont().deriveFont(Font.BOLD, 30F));
 
-            String monsterTextA = "グリーンスライムA";
-            String monsterTextB = "グリーンスライムB";
-            String monsterTextC = "グリーンスライムC";
-            String monsterSelectCommandA = ">";
-            String monsterSelectCommandB = ">";
-            String monsterSelectCommandC = ">";
+            String monsterText = "グリーンスライム-";
+            String four = "匹";
 
-            int monsterTextAx = gamePanel.getTileSize() * 7;
-            int monsterTextAy = gamePanel.getTileSize() * 9;
+            int monsterTextX = gamePanel.getTileSize() * 7;
+            int monsterTextY = gamePanel.getTileSize() * 9;
 
-            int monsterTextBx = gamePanel.getTileSize() * 7;
-            int monsterTextBy = gamePanel.getTileSize() * 10;
+            String monsterSelectCommand = ">";
 
-            int monsterTextCx = gamePanel.getTileSize() * 7;
-            int monsterTextCy = gamePanel.getTileSize() * 11;
-
-            int monsterSelectCommandAx = gamePanel.getTileSize() + 255;
-            int monsterSelectCommandAy = gamePanel.getTileSize() * 9;
-
-            int monsterSelectCommandBx = gamePanel.getTileSize() + 255;
-            int monsterSelectCommandBy = gamePanel.getTileSize() * 10;
-
-            int monsterSelectCommandCx = gamePanel.getTileSize() + 255;
-            int monsterSelectCommandCy = gamePanel.getTileSize() * 11;
+            int monsterSelectCommandX = gamePanel.getTileSize() + 255;
+            int monsterSelectCommandY = gamePanel.getTileSize() * 9;
 
             graphics2D.setColor(Color.white);
 
-            graphics2D.drawString(monsterTextA, monsterTextAx, monsterTextAy);
-            graphics2D.drawString(monsterTextB, monsterTextBx, monsterTextBy);
-            graphics2D.drawString(monsterTextC, monsterTextCx, monsterTextCy);
+            graphics2D.drawString(monsterText + assetSetter.getNumberOfMonsters() + four, monsterTextX, monsterTextY);
+
             if (commandNum == 0) {
-                graphics2D.drawString(monsterSelectCommandA, monsterSelectCommandAx, monsterSelectCommandAy);
-            }
-            if (commandNum == 1) {
-                graphics2D.drawString(monsterSelectCommandB, monsterSelectCommandBx, monsterSelectCommandBy);
-            }
-            if (commandNum == 2) {
-                graphics2D.drawString(monsterSelectCommandC, monsterSelectCommandCx, monsterSelectCommandCy);
+                graphics2D.drawString(monsterSelectCommand, monsterSelectCommandX, monsterSelectCommandY);
             }
         }
     }
