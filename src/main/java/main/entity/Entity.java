@@ -35,6 +35,19 @@ public class Entity {
 
     public int standCounter;
 
+    /**
+     * .
+     * プレイヤーの体力の最大値
+     */
+    private int playerMaxHP = 100;
+
+    /**
+     * .
+     * プレイヤーの体力
+     */
+    private int playerHP;
+
+
     public boolean collisionOn = false;
 
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
@@ -308,5 +321,49 @@ public class Entity {
     public BufferedImage setRight2(final BufferedImage right) {
         this.right2 = right;
         return this.right2;
+    }
+
+    /**
+     * .
+     * ゲッター getPlayerMaxHp
+     *
+     * @return this.playerMaxHP;
+     */
+    public final int getPlayerMaxHP() {
+        return this.playerMaxHP;
+    }
+
+    /**
+     * .
+     * セッター setPlayerMaxHP
+     *
+     * @param maxHP = playerMaxHP;
+     * @return playerMaxHP;
+     */
+    public final int setPlayerMaxHP(final int maxHP) {
+        this.playerMaxHP = maxHP;
+        return playerMaxHP;
+    }
+
+    /**
+     * .
+     * ゲッター getPlayerHp
+     *
+     * @return this.playerHP;
+     */
+    public final int getPlayerHP() {
+        return this.playerHP;
+    }
+
+    /**
+     * .
+     * セッター setPlayerHP
+     *
+     * @param hP = playerHP;
+     * @return playerHP;
+     */
+    public final int setPlayerHP(final int hP) {
+        this.playerHP = hP;
+        return playerHP;
     }
 }

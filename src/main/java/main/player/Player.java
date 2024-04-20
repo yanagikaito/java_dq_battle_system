@@ -82,7 +82,7 @@ public class Player extends Entity {
      * プレイヤーのスピード
      */
 
-    private final int playerSpeed = 4;
+    private final int playerSpeed = 6;
 
     /**
      * .
@@ -134,6 +134,9 @@ public class Player extends Entity {
 
         setSpeed(playerSpeed);
         setDirection("down");
+
+        setPlayerMaxHP(getPlayerMaxHP());
+        setPlayerHP(getPlayerMaxHP());
     }
 
     /**

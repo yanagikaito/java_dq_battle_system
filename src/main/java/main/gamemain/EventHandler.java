@@ -1,5 +1,7 @@
 package main.gamemain;
 
+import main.monster.GreenSlime;
+import main.player.Player;
 import main.ui.BattleScreen;
 
 import java.awt.*;
@@ -9,6 +11,10 @@ public class EventHandler {
     GamePanel gamePanel;
 
     Graphics2D graphics2D;
+
+    Player player;
+
+    GreenSlime[] greenSlime;
 
     AssetSetter assetSetter;
 
@@ -25,10 +31,12 @@ public class EventHandler {
 
     Random random = new Random();
 
-    public EventHandler(GamePanel gamePanel, AssetSetter assetSetter) {
+    public EventHandler(GamePanel gamePanel, AssetSetter assetSetter, Player player, GreenSlime[] greenSlime) {
         this.gamePanel = gamePanel;
         this.assetSetter = assetSetter;
-        battleScreen = new BattleScreen(gamePanel, assetSetter);
+        this.player = player;
+        this.greenSlime = greenSlime;
+        battleScreen = new BattleScreen(gamePanel, assetSetter, player, greenSlime);
         // マップ上のすべてのタイルにイベント矩形ができる。
         // このソリッドエリアをeventRect[][]に設定。
         eventRect = new EventRect[gamePanel.getMaxWorldCol()][gamePanel.getMaxWorldRow()];
@@ -72,8 +80,8 @@ public class EventHandler {
             canTouchEvent = true;
         }
 
-        if (hit(randomHitCol, randomHitRow, "どれか")) {
-            battleScreen.draw(randomHitCol, randomHitRow, gamePanel.setGameState(gamePanel.getBattleState()), graphics2D);
+        if (hit(34, 11, "どれか")) {
+            battleScreen.draw(34, 11, gamePanel.setGameState(gamePanel.getBattleState()), graphics2D);
         }
     }
 
@@ -123,7 +131,7 @@ public class EventHandler {
 
         // バトル画面
         if (gamePanel.getGameState() == gamePanel.getBattleState()) {
-            battleScreen.draw(randomHitCol, randomHitRow, gamePanel.setGameState(gamePanel.getBattleState()), g2);
+            battleScreen.draw(34, 11, gamePanel.setGameState(gamePanel.getBattleState()), g2);
         }
     }
 }

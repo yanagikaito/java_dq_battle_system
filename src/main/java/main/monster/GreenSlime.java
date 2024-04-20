@@ -1,7 +1,10 @@
 
 package main.monster;
 
+import main.entity.Entity;
 import main.gamemain.GamePanel;
+import main.gamemain.KeyHandler;
+import main.player.Player;
 
 import javax.imageio.ImageIO;
 import java.awt.Point;
@@ -10,17 +13,31 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
-public class GreenSlime {
+public class GreenSlime extends Entity {
 
     private String name = "Green Slime";
     private GamePanel gamePanel;
     private BufferedImage image;
+
+    private Player player;
+
+    private KeyHandler keyHandler;
     private List<Point> monsterPositions = new ArrayList<>();
 
+    private Random random = new Random();
+
+    private static final int MAX_DAMEGE = 10;
+
+    private final int monsterDamege = Math.min(random.nextInt(MAX_DAMEGE) + 1, MAX_DAMEGE);
+
+
     // Pointクラスはオブジェクトに保持されているx座標及びy座標をそれぞれ取得する方法
-    public GreenSlime(GamePanel gamePanel, Point... positions) {
+    public GreenSlime(GamePanel gamePanel, Player player, Point... positions) {
+        super(gamePanel);
         this.gamePanel = gamePanel;
+        this.player = new Player(gamePanel, keyHandler);
         for (Point position : positions) {
             monsterPositions.add(position);
         }
@@ -38,9 +55,23 @@ public class GreenSlime {
     public void update() {
     }
 
+    public final int setAction() {
+        final int playerResult = player.getPlayerMaxHP() - monsterDamege;
+        if (player.setPlayerHP(playerResult) < 0) {
+            if (player.getPlayerHP() < 0) {
+                setPlayerHP(0);
+            }
+        }
+        return player.getPlayerHP();
+    }
+
     public void draw(Graphics2D graphics2D) {
         for (Point position : monsterPositions) {
             graphics2D.drawImage(image, position.x, position.y, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
         }
+    }
+
+    public int getMonsterDamege() {
+        return monsterDamege;
     }
 }
