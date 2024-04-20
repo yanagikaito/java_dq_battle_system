@@ -98,6 +98,13 @@ public class KeyHandler implements KeyListener {
                 }
             }
         }
+        if (code == KeyEvent.VK_SPACE) {
+            gamePanel.getBattleScreen().setCommandNum(gamePanel.getBattleScreen().getCommandNum() + 1);
+            if (gamePanel.getBattleScreen().getCommandNum() == 1) {
+                gamePanel.getBattleScreen().setBattleScreenState(2);
+            }
+        }
+
 
         if (code == KeyEvent.VK_W) {
             upPressed = true;
@@ -113,6 +120,9 @@ public class KeyHandler implements KeyListener {
             rightPressed = true;
         }
         if (code == KeyEvent.VK_ENTER) {
+            enterPressed = true;
+        }
+        if (code == KeyEvent.VK_SPACE) {
             enterPressed = true;
         }
     }
@@ -146,7 +156,11 @@ public class KeyHandler implements KeyListener {
         if (code == KeyEvent.VK_ENTER) {
             enterPressed = false;
         }
+        if (code == KeyEvent.VK_SPACE) {
+            enterPressed = false;
+        }
     }
+
 
     /**
      * .

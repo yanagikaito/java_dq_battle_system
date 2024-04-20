@@ -2,15 +2,20 @@ package main.ui;
 
 import main.gamemain.AssetSetter;
 import main.gamemain.GamePanel;
+import main.monster.GreenSlime;
+import main.player.Player;
 
 import java.awt.*;
-import java.util.Random;
 
 public class BattleScreen {
 
     private GamePanel gamePanel;
 
     private Graphics2D graphics2D;
+
+    private Player player;
+
+    private GreenSlime[] greenSlime;
 
     // フォント 80BはBOLD
     private Font arial_40, arial_80B;
@@ -22,11 +27,13 @@ public class BattleScreen {
 
     private int commandNum = 0;
 
-    private int monsterNum = 0;
+    private int monsterNum = 1;
 
-    public BattleScreen(GamePanel gamePanel, AssetSetter assetSetter) {
+    public BattleScreen(GamePanel gamePanel, AssetSetter assetSetter, Player player, GreenSlime[] greenSlime) {
         this.gamePanel = gamePanel;
         this.assetSetter = assetSetter;
+        this.player = player;
+        this.greenSlime = greenSlime;
         // ゲームループが開始する前にインスタンス化を完了できるようにする。
         arial_40 = new Font("エリア", Font.PLAIN, 40);
         arial_80B = new Font("エリア", Font.BOLD, 80);
@@ -54,13 +61,14 @@ public class BattleScreen {
             drawDialogueScreen();
             drawCommandScreen();
             drawMonsterTextDialogueScreen();
+        } else if (battleScreenState == 2) {
+            drawBattleScreen();
+            drawDialogueScreen();
+            drawMonsterAttackTextDialogueScreen();
         }
     }
 
     public void drawBattleScreen() {
-
-        Random random = new Random();
-        int randomMonster = random.nextInt(3) + 1;
 
         // バトル画面の状態をチェックする。
         if (battleScreenState == 0) {
@@ -71,7 +79,7 @@ public class BattleScreen {
             graphics2D.setFont(graphics2D.getFont().deriveFont(Font.BOLD, 30F));
 
             String playerText = "勇者";
-            String playerHpText = "HP100";
+            String playerHpText = "HP";
             String playerCommandBattle = "たたかう";
             String playerCommandFlee = "にげる";
             String monsterAppear = "グリーンスライムがあらわれた";
@@ -107,13 +115,13 @@ public class BattleScreen {
 
             // 文字列をxとyに描画する。
             graphics2D.drawString(playerText, playerTextX, playerTextY);
-            graphics2D.drawString(playerHpText, playerHpTextX, playerHpTextY);
+            graphics2D.drawString(playerHpText + player.getPlayerMaxHP(), playerHpTextX, playerHpTextY);
             graphics2D.drawString(playerCommandBattle, commandBattleX, commandBattleY);
             graphics2D.drawString(playerCommandFlee, commandFleeX, commandFleeY);
-            if (monsterNum == 1) {
+            if (monsterNum == assetSetter.getNumberOfMonsters()) {
                 graphics2D.drawString(monsterAppear, monsterAppearX, monsterAppearY);
             }
-            if (randomMonster > monsterNum) {
+            if (assetSetter.getNumberOfMonsters() > monsterNum) {
                 graphics2D.drawString(monsterNumApper, monsterNumAppearX, monsterNumAppearY);
             }
             if (commandNum == 0) {
@@ -127,7 +135,7 @@ public class BattleScreen {
             graphics2D.setFont(graphics2D.getFont().deriveFont(Font.BOLD, 30F));
 
             String playerText = "勇者";
-            String playerHpText = "HP100";
+            String playerHpText = "HP";
             String playerCommandAttack = "こうげき";
             String selectCommandAttack = ">";
 
@@ -146,7 +154,7 @@ public class BattleScreen {
             graphics2D.setColor(Color.white);
 
             graphics2D.drawString(playerText, playerTextX, playerTextY);
-            graphics2D.drawString(playerHpText, playerHpTextX, playerHpTextY);
+            graphics2D.drawString(playerHpText + player.getPlayerMaxHP(), playerHpTextX, playerHpTextY);
             graphics2D.drawString(playerCommandAttack, commandAttackX, commandAttackY);
             graphics2D.drawString(selectCommandAttack, playerSelectCommandAttackX, playerSelectCommandAttackY);
 
@@ -170,6 +178,34 @@ public class BattleScreen {
             if (commandNum == 0) {
                 graphics2D.drawString(monsterSelectCommand, monsterSelectCommandX, monsterSelectCommandY);
             }
+        } else if (battleScreenState == 2) {
+
+            graphics2D.setFont(graphics2D.getFont().deriveFont(Font.BOLD, 30F));
+
+            String playerText = "勇者";
+            String playerHpText = "HP";
+            String monsterAttackText = "グリーンスライムのこうげき";
+            String battleText = "勇者に";
+            String playerResultText = "のダメージを与えた";
+
+            int playerTextX = getXforCenteredText(playerText);
+            int playerTextY = gamePanel.getTileSize() + 12;
+
+            int playerHpTextX = gamePanel.getTileSize();
+            int playerHpTextY = gamePanel.getTileSize() * 2;
+
+            int monsterAttackTextX = gamePanel.getTileSize() * 4;
+            int monsterAttackTextY = gamePanel.getTileSize() * 9;
+
+            int battleTextX = gamePanel.getTileSize() * 4;
+            int battleTextY = gamePanel.getTileSize() * 10;
+
+            graphics2D.setColor(Color.white);
+
+            graphics2D.drawString(playerText, playerTextX, playerTextY);
+            graphics2D.drawString(playerHpText + greenSlime[0].setAction(), playerHpTextX, playerHpTextY);
+            graphics2D.drawString(monsterAttackText, monsterAttackTextX, monsterAttackTextY);
+            graphics2D.drawString(battleText + greenSlime[0].getMonsterDamege() + playerResultText, battleTextX, battleTextY);
         }
     }
 
@@ -241,6 +277,25 @@ public class BattleScreen {
     public void drawMonsterTextDialogueScreen() {
         // ウィンドウ
         int x = gamePanel.getTileSize() * 5;
+        int y = gamePanel.getTileSize() * 8;
+        int width = gamePanel.getScreenWidth() - (gamePanel.getTileSize() * 6);
+        int height = gamePanel.getTileSize() * 4;
+
+        drawBattleCommandWindow(x, y, width, height);
+
+        graphics2D.setFont(graphics2D.getFont().deriveFont(Font.PLAIN, 28F));
+        x += gamePanel.getTileSize();
+        y += gamePanel.getTileSize();
+
+        for (String line : currentDialogue.split("\n")) {
+            graphics2D.drawString(line, x, y);
+            y += 40;
+        }
+    }
+
+    public void drawMonsterAttackTextDialogueScreen() {
+        // ウィンドウ
+        int x = gamePanel.getTileSize() * 3;
         int y = gamePanel.getTileSize() * 8;
         int width = gamePanel.getScreenWidth() - (gamePanel.getTileSize() * 6);
         int height = gamePanel.getTileSize() * 4;

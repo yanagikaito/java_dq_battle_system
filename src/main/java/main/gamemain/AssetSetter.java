@@ -1,12 +1,15 @@
 package main.gamemain;
 
 import main.monster.GreenSlime;
+import main.player.Player;
 
 import java.awt.Point;
 import java.util.Random;
 
 public class AssetSetter {
     private GamePanel gamePanel;
+
+    private Player player;
 
     private Random random = new Random();
 
@@ -39,7 +42,7 @@ public class AssetSetter {
 
         Point position = new Point(screenX, screenY);
 
-        return new GreenSlime(gamePanel, new Point[]{position});
+        return new GreenSlime(gamePanel, player, new Point[]{position});
     }
 
     public int getNumberOfMonsters() {

@@ -119,12 +119,6 @@ public class GamePanel extends JPanel implements Runnable {
 
     /**
      * .
-     * BattleScreenをインスタンス化
-     */
-    private BattleScreen battleScreen = new BattleScreen(this, assetSetter);
-
-    /**
-     * .
      * KeyHandlerをインスタンス化
      */
     private KeyHandler keyHandler = new KeyHandler(this);
@@ -143,6 +137,13 @@ public class GamePanel extends JPanel implements Runnable {
 
     /**
      * .
+     * BattleScreenをインスタンス化
+     */
+    private BattleScreen battleScreen = new BattleScreen(this, assetSetter, player, monsterGreenSlime);
+
+
+    /**
+     * .
      * TileManagerをインスタンス化
      */
     private final TileManager tileManager = new TileManager(this);
@@ -157,7 +158,7 @@ public class GamePanel extends JPanel implements Runnable {
      * .
      * EventHandlerをインスタンス化
      */
-    private final EventHandler eventHandler = new EventHandler(this, assetSetter);
+    private final EventHandler eventHandler = new EventHandler(this, assetSetter, player,monsterGreenSlime);
 
     /**
      * .
@@ -285,7 +286,7 @@ public class GamePanel extends JPanel implements Runnable {
         } else if (gameState == battleState) {
 
             // 戦闘画面表示
-            battleScreen.draw(randomHitCol, randomHitRow, getBattleState(), g2);
+            battleScreen.draw(34, 11, getBattleState(), g2);
             for (GreenSlime greenSlime : monsterGreenSlime) {
                 if (greenSlime != null) {
                     greenSlime.draw(g2);
