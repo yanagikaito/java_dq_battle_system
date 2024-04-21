@@ -12,12 +12,29 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 public class GreenSlime extends Entity {
 
+    private Random random = new Random();
+
     private String name = "Green Slime";
+
+    private List<String> monsterAttackText = Arrays.asList("グリーンスライムAのこうげき",
+            "グリーンスライムBのこうげき",
+            "グリーンスライムCのこうげき",
+            "グリーンスライムDのこうげき",
+            "グリーンスライムEのこうげき",
+            "グリーンスライムFのこうげき",
+            "グリーンスライムGのこうげき",
+            "グリーンスライムHのこうげき");
+
+    private final int index = random.nextInt(monsterAttackText.size());
+    private final String result = monsterAttackText.get(index);
+
+    private String monsterAttackName = "";
     private GamePanel gamePanel;
     private BufferedImage image;
 
@@ -25,8 +42,6 @@ public class GreenSlime extends Entity {
 
     private KeyHandler keyHandler;
     private List<Point> monsterPositions = new ArrayList<>();
-
-    private Random random = new Random();
 
     private static final int MAX_DAMAGE = 10;
 
@@ -65,6 +80,10 @@ public class GreenSlime extends Entity {
         return player.getPlayerHP();
     }
 
+    public final String monsterAttack() {
+        return setMonsterAttackName(result);
+    }
+
     public void draw(Graphics2D graphics2D) {
         for (Point position : monsterPositions) {
             graphics2D.drawImage(image, position.x, position.y, gamePanel.getTileSize(), gamePanel.getTileSize(), null);
@@ -73,5 +92,14 @@ public class GreenSlime extends Entity {
 
     public int getMonsterDamege() {
         return monsterDamage;
+    }
+
+    public String getMonsterAttackName() {
+        return this.monsterAttackName;
+    }
+
+    public final String setMonsterAttackName(final String attackName) {
+        this.monsterAttackName = attackName;
+        return this.monsterAttackName;
     }
 }

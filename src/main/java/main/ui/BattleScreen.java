@@ -6,6 +6,11 @@ import main.monster.GreenSlime;
 import main.player.Player;
 
 import java.awt.*;
+import java.text.AttributedCharacterIterator;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 
 public class BattleScreen {
 
@@ -184,7 +189,6 @@ public class BattleScreen {
 
             String playerText = "勇者";
             String playerHpText = "HP";
-            String monsterAttackText = "グリーンスライムのこうげき";
             String battleText = "勇者に";
             String playerResultText = "のダメージを与えた";
 
@@ -203,9 +207,9 @@ public class BattleScreen {
             graphics2D.setColor(Color.white);
 
             graphics2D.drawString(playerText, playerTextX, playerTextY);
-            graphics2D.drawString(playerHpText + greenSlime[0].setAction(), playerHpTextX, playerHpTextY);
-            graphics2D.drawString(monsterAttackText, monsterAttackTextX, monsterAttackTextY);
-            graphics2D.drawString(battleText + greenSlime[0].getMonsterDamege() + playerResultText, battleTextX, battleTextY);
+            graphics2D.drawString(playerHpText + gamePanel.getGreenSlime()[0].setAction(), playerHpTextX, playerHpTextY);
+            graphics2D.drawString(gamePanel.getGreenSlime()[0].monsterAttack(), monsterAttackTextX, monsterAttackTextY);
+            graphics2D.drawString(battleText + gamePanel.getGreenSlime()[0].getMonsterDamege() + playerResultText, battleTextX, battleTextY);
         }
     }
 
