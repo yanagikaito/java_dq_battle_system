@@ -19,6 +19,8 @@ public class AssetSetter {
     // GreenSlimeのインスタンス数を最大8体に固定
     private int numberOfMonsters = Math.min(random.nextInt(MAX_MONSTERS) + 1, MAX_MONSTERS);
 
+    private String textGreenSlime = String.valueOf(numberOfMonsters);
+
     public AssetSetter(GamePanel gamePanel) {
         this.gamePanel = gamePanel;
     }
@@ -47,5 +49,9 @@ public class AssetSetter {
 
     public int getNumberOfMonsters() {
         return this.numberOfMonsters;
+    }
+
+    public String getTextGreenSlime() {
+        return this.textGreenSlime;
     }
 }
