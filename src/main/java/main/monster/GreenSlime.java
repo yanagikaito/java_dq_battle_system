@@ -28,9 +28,9 @@ public class GreenSlime extends Entity {
 
     private Random random = new Random();
 
-    private static final int MAX_DAMEGE = 10;
+    private static final int MAX_DAMAGE = 10;
 
-    private final int monsterDamege = Math.min(random.nextInt(MAX_DAMEGE) + 1, MAX_DAMEGE);
+    private final int monsterDamage = Math.min(random.nextInt(MAX_DAMAGE) + 1, MAX_DAMAGE);
 
 
     // Pointクラスはオブジェクトに保持されているx座標及びy座標をそれぞれ取得する方法
@@ -56,7 +56,7 @@ public class GreenSlime extends Entity {
     }
 
     public final int setAction() {
-        final int playerResult = player.getPlayerMaxHP() - monsterDamege;
+        final int playerResult = player.getPlayerMaxHP() - monsterDamage;
         if (player.setPlayerHP(playerResult) < 0) {
             if (player.getPlayerHP() < 0) {
                 setPlayerHP(0);
@@ -72,6 +72,6 @@ public class GreenSlime extends Entity {
     }
 
     public int getMonsterDamege() {
-        return monsterDamege;
+        return monsterDamage;
     }
 }
