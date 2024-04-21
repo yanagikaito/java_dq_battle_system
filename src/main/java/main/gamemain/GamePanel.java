@@ -158,7 +158,7 @@ public class GamePanel extends JPanel implements Runnable {
      * .
      * EventHandlerをインスタンス化
      */
-    private final EventHandler eventHandler = new EventHandler(this, assetSetter, player,monsterGreenSlime);
+    private final EventHandler eventHandler = new EventHandler(this, assetSetter, player, monsterGreenSlime);
 
     /**
      * .
@@ -347,6 +347,20 @@ public class GamePanel extends JPanel implements Runnable {
 
     /**
      * .
+     * セッター getBattleState
+     *
+     * @param state = battleState
+     * @return this.battleState;
+     */
+
+    public int setBattleState(int state) {
+        this.battleState = state;
+        return this.battleState;
+    }
+
+
+    /**
+     * .
      * ゲッター getScreenWidth
      *
      * @return this.screenWidth;
@@ -453,5 +467,17 @@ public class GamePanel extends JPanel implements Runnable {
 
     public EventHandler getEventHandler() {
         return this.eventHandler;
+    }
+
+    /**
+     * .
+     * プレイヤーの状態
+     * ゲッター getPlayState
+     *
+     * @return this.playState;
+     */
+
+    public int getPlayState() {
+        return this.playState;
     }
 }
