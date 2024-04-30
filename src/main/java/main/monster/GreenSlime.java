@@ -41,6 +41,7 @@ public class GreenSlime extends Entity {
     private Player player;
 
     private KeyHandler keyHandler;
+
     private List<Point> monsterPositions = new ArrayList<>();
 
     private static final int MAX_DAMAGE = 10;
@@ -56,6 +57,7 @@ public class GreenSlime extends Entity {
         for (Point position : positions) {
             monsterPositions.add(position);
         }
+        init();
         loadImage();
     }
 
@@ -65,6 +67,11 @@ public class GreenSlime extends Entity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public void init() {
+        setMonsterMaxHP(getMonsterMaxHP());
+        setMonsterHP(getMonsterHP());
     }
 
     public void update() {
