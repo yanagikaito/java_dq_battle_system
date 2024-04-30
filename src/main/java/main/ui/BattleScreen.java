@@ -70,6 +70,10 @@ public class BattleScreen {
             drawBattleScreen();
             drawDialogueScreen();
             drawMonsterAttackTextDialogueScreen();
+        } else if (battleScreenState == 3) {
+            drawBattleScreen();
+            drawDialogueScreen();
+            drawMonsterAttackTextDialogueScreen();
         }
     }
 
@@ -210,6 +214,23 @@ public class BattleScreen {
             graphics2D.drawString(playerHpText + gamePanel.getGreenSlime()[0].setAction(), playerHpTextX, playerHpTextY);
             graphics2D.drawString(gamePanel.getGreenSlime()[0].monsterAttack(), monsterAttackTextX, monsterAttackTextY);
             graphics2D.drawString(battleText + gamePanel.getGreenSlime()[0].getMonsterDamege() + playerResultText, battleTextX, battleTextY);
+        } else if (battleScreenState == 3) {
+
+            graphics2D.setFont(graphics2D.getFont().deriveFont(Font.BOLD, 30F));
+
+            String playerText = "勇者";
+            String playerHpText = "HP";
+            String battleText = "グリーンスライムに";
+            String monsterResultText = "のダメージを与えた";
+
+            int playerTextX = getXforCenteredText(playerText);
+            int playerTextY = gamePanel.getTileSize() + 12;
+
+            int playerHpTextX = gamePanel.getTileSize();
+            int playerHpTextY = gamePanel.getTileSize() * 2;
+
+            graphics2D.drawString(playerText, playerTextX, playerTextY);
+            graphics2D.drawString(playerHpText + gamePanel.getGreenSlime()[0].setAction(), playerHpTextX, playerHpTextY);
         }
     }
 

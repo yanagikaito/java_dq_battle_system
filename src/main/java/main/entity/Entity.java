@@ -47,6 +47,20 @@ public class Entity {
      */
     private int playerHP;
 
+    /**
+     * .
+     * モンスターの体力の最大値
+     */
+
+    private int monsterMaxHP = 50;
+
+    /**
+     * .
+     * モンスターの体力
+     */
+
+    private int monsterHP;
+
 
     public boolean collisionOn = false;
 
@@ -365,5 +379,52 @@ public class Entity {
     public final int setPlayerHP(final int hP) {
         this.playerHP = hP;
         return playerHP;
+    }
+
+    /**
+     * .
+     * ゲッター getMonsterMaxHP
+     *
+     * @return this.monsterMaxHP;
+     */
+    public int getMonsterMaxHP() {
+        return this.monsterMaxHP;
+    }
+
+    /**
+     * .
+     * セッター setMonsterMaxHP;
+     *
+     * @param maxHP = monsterMaxHP;
+     * @return this.monsterMaxHP;
+     */
+
+    public int setMonsterMaxHP(final int maxHP) {
+        this.monsterMaxHP = maxHP;
+        return this.monsterMaxHP;
+    }
+
+    /**
+     * .
+     * ゲッター　getMonsterHP
+     *
+     * @return this.monsterHP;
+     */
+
+    public int getMonsterHP() {
+        return this.monsterHP;
+    }
+
+    /**
+     * .
+     * セッター setMonsterHP;
+     *
+     * @param hP = monsterHP
+     * @return this.monsterHP;
+     */
+
+    public int setMonsterHP(final int hP) {
+        this.monsterHP = hP;
+        return this.monsterHP;
     }
 }
