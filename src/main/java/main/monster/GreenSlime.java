@@ -42,6 +42,8 @@ public class GreenSlime extends Entity {
 
     private KeyHandler keyHandler;
 
+    private GreenSlime[] greenSlime;
+
     private List<Point> monsterPositions = new ArrayList<>();
 
     private static final int MAX_DAMAGE = 10;
@@ -53,7 +55,7 @@ public class GreenSlime extends Entity {
     public GreenSlime(GamePanel gamePanel, Player player, Point... positions) {
         super(gamePanel);
         this.gamePanel = gamePanel;
-        this.player = new Player(gamePanel, keyHandler);
+        this.player = new Player(gamePanel, greenSlime, keyHandler);
         for (Point position : positions) {
             monsterPositions.add(position);
         }
@@ -97,7 +99,7 @@ public class GreenSlime extends Entity {
         }
     }
 
-    public int getMonsterDamege() {
+    public int getMonsterDamage() {
         return monsterDamage;
     }
 

@@ -213,14 +213,16 @@ public class BattleScreen {
             graphics2D.drawString(playerText, playerTextX, playerTextY);
             graphics2D.drawString(playerHpText + gamePanel.getGreenSlime()[0].setAction(), playerHpTextX, playerHpTextY);
             graphics2D.drawString(gamePanel.getGreenSlime()[0].monsterAttack(), monsterAttackTextX, monsterAttackTextY);
-            graphics2D.drawString(battleText + gamePanel.getGreenSlime()[0].getMonsterDamege() + playerResultText, battleTextX, battleTextY);
+            graphics2D.drawString(battleText + gamePanel.getGreenSlime()[0].getMonsterDamage() + playerResultText, battleTextX, battleTextY);
+
         } else if (battleScreenState == 3) {
 
             graphics2D.setFont(graphics2D.getFont().deriveFont(Font.BOLD, 30F));
 
             String playerText = "勇者";
             String playerHpText = "HP";
-            String battleText = "グリーンスライムに";
+            String playerAttack = "勇者の攻撃";
+            String playerAttackTextOf = "の";
             String monsterResultText = "のダメージを与えた";
 
             int playerTextX = getXforCenteredText(playerText);
@@ -229,8 +231,21 @@ public class BattleScreen {
             int playerHpTextX = gamePanel.getTileSize();
             int playerHpTextY = gamePanel.getTileSize() * 2;
 
+            int playerAttackTextX = gamePanel.getTileSize() * 4;
+            int playerAttackTextY = gamePanel.getTileSize() * 9;
+
+            int playerAttackTextOfX = gamePanel.getTileSize() * 4;
+            int playerAttackTextOfY = gamePanel.getTileSize() * 10;
+
+            int monsterResultTextX = gamePanel.getTileSize() * 4;
+            int monsterResultTextY = gamePanel.getTileSize() * 11;
+
             graphics2D.drawString(playerText, playerTextX, playerTextY);
             graphics2D.drawString(playerHpText + gamePanel.getGreenSlime()[0].setAction(), playerHpTextX, playerHpTextY);
+            graphics2D.drawString(playerAttack, playerAttackTextX, playerAttackTextY);
+            graphics2D.drawString(gamePanel.getPlayer().playerAttack() + gamePanel.getPlayer().getPlayerDamage() +
+                    playerAttackTextOf, playerAttackTextOfX, playerAttackTextOfY);
+            graphics2D.drawString(monsterResultText, monsterResultTextX, monsterResultTextY);
         }
     }
 
