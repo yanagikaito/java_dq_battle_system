@@ -4,12 +4,16 @@ package main.player;
 import main.gamemain.GamePanel;
 import main.gamemain.KeyHandler;
 import main.entity.Entity;
+import main.monster.GreenSlime;
 
 import javax.imageio.ImageIO;
 import java.awt.Rectangle;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
 
 public class Player extends Entity {
 
@@ -90,18 +94,42 @@ public class Player extends Entity {
      */
     private final int spriteChange = 12;
 
+    private Random random = new Random();
+
+    private List<String> monsterDamageText = Arrays.asList("グリーンスライムAに",
+            "グリーンスライムBに",
+            "グリーンスライムCに",
+            "グリーンスライムDに",
+            "グリーンスライムEに",
+            "グリーンスライムFに",
+            "グリーンスライムGに",
+            "グリーンスライムHに");
+
+    private final int index = random.nextInt(monsterDamageText.size());
+    private final String result = monsterDamageText.get(index);
+
+    private GreenSlime[] monsterGreenSlime;
+
+    private static final int MAX_DAMAGE = 10;
+
+    private final int playerDamage = Math.min(random.nextInt(MAX_DAMAGE) + 1, MAX_DAMAGE);
+
+    private String monsterAttackTextName = "";
+
 
     /**
      * .
      * Playerのコンストラクタを作成し,gamePanelとkeyHandlerを初期化
      *
-     * @param panel = GamePanel
-     * @param key   = keyHandler
+     * @param panel   = gamePanel
+     * @param key     = keyHandler
+     * @param monster = monsterGreenSlime
      */
-    public Player(final GamePanel panel, final KeyHandler key) {
+    public Player(final GamePanel panel, final GreenSlime[] monster, final KeyHandler key) {
         super(panel);
         this.gamePanel = panel;
         this.keyHandler = key;
+        this.monsterGreenSlime = monster;
         pScreenX = (gamePanel.getScreenWidth() / 2) - gamePanel.getTileSize();
         pScreenY = (gamePanel.getScreenHeight() / 2) - gamePanel.getTileSize();
 
@@ -119,6 +147,16 @@ public class Player extends Entity {
         // コンストラクタの中にメソッド宣言すれば初期値が設定される。
         setDefaultValues();
         loadPlayerImage();
+    }
+
+    public final int setAction() {
+        final int monsterResult = getMonsterMaxHP() - playerDamage;
+        if (setMonsterHP(monsterResult) < 0) {
+            if (getMonsterHP() < 0) {
+                setPlayerHP(0);
+            }
+        }
+        return getMonsterHP();
     }
 
     /**
@@ -281,5 +319,22 @@ public class Player extends Entity {
      */
     public int getPlayerScreenY() {
         return pScreenY;
+    }
+
+    public final String playerAttack() {
+        return setMonsterAttackTextName(result);
+    }
+
+    public int getPlayerDamage() {
+        return playerDamage;
+    }
+
+    public String getMonsterAttackTextName() {
+        return this.monsterAttackTextName;
+    }
+
+    public final String setMonsterAttackTextName(final String attackName) {
+        this.monsterAttackTextName = attackName;
+        return this.monsterAttackTextName;
     }
 }

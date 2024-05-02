@@ -125,15 +125,15 @@ public class GamePanel extends JPanel implements Runnable {
 
     /**
      * .
-     * Playerをインスタンス化
-     */
-    private final Player player = new Player(this, keyHandler);
-
-    /**
-     * .
      * GreenSlime[]をインスタンス化
      */
     private final GreenSlime[] monsterGreenSlime = new GreenSlime[monsterType];
+
+    /**
+     * .
+     * Playerをインスタンス化
+     */
+    private final Player player = new Player(this, monsterGreenSlime, keyHandler);
 
     /**
      * .
