@@ -90,6 +90,19 @@ public class Player extends Entity {
 
     /**
      * .
+     * プレイヤーの体力の最大値
+     */
+    private int playerMaxHP = 100;
+
+    /**
+     * .
+     * プレイヤーの体力
+     */
+    private int playerHP;
+
+
+    /**
+     * .
      * プレイヤーの画像切り替え
      */
     private final int spriteChange = 12;
@@ -149,16 +162,6 @@ public class Player extends Entity {
         loadPlayerImage();
     }
 
-    public final int setAction() {
-        final int monsterResult = getMonsterMaxHP() - playerDamage;
-        if (setMonsterHP(monsterResult) < 0) {
-            if (getMonsterHP() < 0) {
-                setPlayerHP(0);
-            }
-        }
-        return getMonsterHP();
-    }
-
     /**
      * .
      * プレイヤーの開始位置の座標の設定
@@ -173,8 +176,8 @@ public class Player extends Entity {
         setSpeed(playerSpeed);
         setDirection("down");
 
-        setPlayerMaxHP(getPlayerMaxHP());
-        setPlayerHP(getPlayerMaxHP());
+        setPlayerMaxHP(playerMaxHP = 100);
+        setPlayerHP(playerHP = playerMaxHP);
     }
 
     /**
@@ -319,6 +322,50 @@ public class Player extends Entity {
      */
     public int getPlayerScreenY() {
         return pScreenY;
+    }
+
+    /**
+     * .
+     * ゲッター getPlayerMaxHp
+     *
+     * @return this.playerMaxHP;
+     */
+    public final int getPlayerMaxHP() {
+        return this.playerMaxHP;
+    }
+
+    /**
+     * .
+     * セッター setPlayerMaxHP
+     *
+     * @param maxHP = playerMaxHP;
+     * @return playerMaxHP;
+     */
+    public final int setPlayerMaxHP(final int maxHP) {
+        this.playerMaxHP = maxHP;
+        return this.playerMaxHP;
+    }
+
+    /**
+     * .
+     * ゲッター getPlayerHp
+     *
+     * @return this.playerHP;
+     */
+    public final int getPlayerHP() {
+        return this.playerHP;
+    }
+
+    /**
+     * .
+     * セッター setPlayerHP
+     *
+     * @param hP = playerHP;
+     * @return playerHP;
+     */
+    public int setPlayerHP(int hP) {
+        this.playerHP = hP;
+        return this.playerHP;
     }
 
     public final String playerAttack() {

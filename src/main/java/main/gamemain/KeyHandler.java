@@ -45,6 +45,8 @@ public class KeyHandler implements KeyListener {
 
     private boolean vk1Pressed;
 
+    private boolean vk2Pressed;
+
 
     /**
      * .
@@ -96,6 +98,8 @@ public class KeyHandler implements KeyListener {
             checkBattleSPACEAttackKeyPressed(code);
         } else if (gamePanel.getBattleState() == 3) {
             checkBattleVK1AttackKeyPressed(code);
+        } else if (gamePanel.getBattleState() == 4) {
+            checkBattleVK2AttackKeyPressed(code);
         }
     }
 
@@ -119,7 +123,7 @@ public class KeyHandler implements KeyListener {
     private void checkBattleENTERScreenKeyPressed(final int code) {
         if (code == KeyEvent.VK_ENTER) {
             // コマンド番号 コマンド番号がゼロの場合、次のコマンドを選択。
-            if (gamePanel.getBattleScreen().getCommandNum() == 0 || gamePanel.getBattleScreen().getCommandNum() == 4) {
+            if (gamePanel.getBattleScreen().getCommandNum() == 0 || gamePanel.getBattleScreen().getCommandNum() == 5) {
                 gamePanel.getBattleScreen().setBattleScreenState(1);
             }
         }
@@ -129,7 +133,7 @@ public class KeyHandler implements KeyListener {
     private void checkBattleSPACEAttackKeyPressed(final int code) {
         if (code == KeyEvent.VK_SPACE) {
             gamePanel.getBattleScreen().setCommandNum(gamePanel.getBattleScreen().getCommandNum() + 1);
-            if (gamePanel.getBattleScreen().getCommandNum() == 1 || gamePanel.getBattleScreen().getCommandNum() == 5) {
+            if (gamePanel.getBattleScreen().getCommandNum() == 1 || gamePanel.getBattleScreen().getCommandNum() == 6) {
                 gamePanel.getBattleScreen().setBattleScreenState(2);
             }
         }
@@ -143,13 +147,17 @@ public class KeyHandler implements KeyListener {
             gamePanel.getBattleScreen().setCommandNum(4);
             gamePanel.getBattleScreen().setBattleScreenState(3);
         }
+        checkBattleVK2AttackKeyPressed(code);
+    }
 
-        if (code == KeyEvent.VK_ENTER) {
-            if (gamePanel.getBattleScreen().getCommandNum() == 4) {
-                gamePanel.getBattleScreen().setBattleScreenState(1);
-            }
+    private void checkBattleVK2AttackKeyPressed(final int code) {
+        if (code == KeyEvent.VK_2) {
+            gamePanel.getBattleScreen().setCommandNum(gamePanel.getBattleScreen().getCommandNum() + 2);
+            gamePanel.getBattleScreen().setCommandNum(5);
+            gamePanel.getBattleScreen().setBattleScreenState(4);
         }
     }
+
 
     private void checkPlayStateKeyPressed(final int code) {
         checkMovementKeys(code);
@@ -170,19 +178,16 @@ public class KeyHandler implements KeyListener {
             rightPressed = true;
         }
         if (code == KeyEvent.VK_ENTER) {
-            if (gamePanel.getGameState() == gamePanel.getBattleState()) {
-                gamePanel.setBattleState(gamePanel.getBattleState());
-            }
-        } else if (gamePanel.getGameState() == gamePanel.getBattleState()) {
-            if (code == KeyEvent.VK_ENTER) {
-                gamePanel.setBattleState(gamePanel.getBattleState());
-            }
+            enterPressed = true;
         }
         if (code == KeyEvent.VK_SPACE) {
             spacePressed = true;
         }
         if (code == KeyEvent.VK_1) {
             vk1Pressed = true;
+        }
+        if (code == KeyEvent.VK_2) {
+            vk2Pressed = true;
         }
     }
 
@@ -220,6 +225,9 @@ public class KeyHandler implements KeyListener {
         }
         if (code == KeyEvent.VK_1) {
             vk1Pressed = false;
+        }
+        if (code == KeyEvent.VK_2) {
+            vk2Pressed = false;
         }
     }
 
