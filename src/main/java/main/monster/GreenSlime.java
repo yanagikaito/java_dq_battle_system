@@ -48,7 +48,7 @@ public class GreenSlime extends Entity {
 
     private static final int MAX_DAMAGE = 10;
 
-    private final int monsterDamage = Math.min(random.nextInt(MAX_DAMAGE) + 1, MAX_DAMAGE);
+    private int monsterDamage = Math.min(random.nextInt(MAX_DAMAGE) + 1, MAX_DAMAGE);
 
 
     // Pointクラスはオブジェクトに保持されているx座標及びy座標をそれぞれ取得する方法
@@ -59,7 +59,6 @@ public class GreenSlime extends Entity {
         for (Point position : positions) {
             monsterPositions.add(position);
         }
-        init();
         loadImage();
     }
 
@@ -71,23 +70,21 @@ public class GreenSlime extends Entity {
         }
     }
 
-    public void init() {
-        setMonsterMaxHP(getMonsterMaxHP());
-        setMonsterHP(getMonsterHP());
-    }
-
     public void update() {
     }
 
-    public final int setAction() {
-        final int playerResult = player.getPlayerMaxHP() - monsterDamage;
+    public int setAction() {
+       
+        int monsterResult = setMonsterDamage(monsterDamage);
+        int playerResult = player.getPlayerMaxHP() - monsterResult;
         if (player.setPlayerHP(playerResult) < 0) {
             if (player.getPlayerHP() < 0) {
-                setPlayerHP(0);
+                player.setPlayerHP(0);
             }
         }
-        return player.getPlayerHP();
+        return player.setPlayerHP(playerResult);
     }
+
 
     public final String monsterAttack() {
         return setMonsterAttackName(result);
@@ -101,6 +98,11 @@ public class GreenSlime extends Entity {
 
     public int getMonsterDamage() {
         return monsterDamage;
+    }
+
+    public int setMonsterDamage(int damage) {
+        this.monsterDamage = damage;
+        return this.monsterDamage;
     }
 
     public String getMonsterAttackName() {

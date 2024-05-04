@@ -6,11 +6,6 @@ import main.monster.GreenSlime;
 import main.player.Player;
 
 import java.awt.*;
-import java.text.AttributedCharacterIterator;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Random;
 
 public class BattleScreen {
 
@@ -74,6 +69,11 @@ public class BattleScreen {
             drawBattleScreen();
             drawDialogueScreen();
             drawMonsterAttackTextDialogueScreen();
+        } else if (battleScreenState == 4) {
+            drawBattleScreen();
+            drawDialogueScreen();
+            drawCommandScreen();
+            drawMonsterTextDialogueScreen();
         }
     }
 
@@ -163,7 +163,7 @@ public class BattleScreen {
             graphics2D.setColor(Color.white);
 
             graphics2D.drawString(playerText, playerTextX, playerTextY);
-            graphics2D.drawString(playerHpText + player.getPlayerMaxHP(), playerHpTextX, playerHpTextY);
+            graphics2D.drawString(playerHpText + player.getPlayerHP(), playerHpTextX, playerHpTextY);
             graphics2D.drawString(playerCommandAttack, commandAttackX, commandAttackY);
             graphics2D.drawString(selectCommandAttack, playerSelectCommandAttackX, playerSelectCommandAttackY);
 
@@ -243,9 +243,56 @@ public class BattleScreen {
             graphics2D.drawString(playerText, playerTextX, playerTextY);
             graphics2D.drawString(playerHpText + gamePanel.getGreenSlime()[0].setAction(), playerHpTextX, playerHpTextY);
             graphics2D.drawString(playerAttack, playerAttackTextX, playerAttackTextY);
-            graphics2D.drawString(gamePanel.getPlayer().playerAttack() + gamePanel.getPlayer().getPlayerDamage() +
-                    playerAttackTextOf, playerAttackTextOfX, playerAttackTextOfY);
+            graphics2D.drawString(gamePanel.getPlayer().playerAttack() + gamePanel.getPlayer().getPlayerDamage()
+                    + playerAttackTextOf, playerAttackTextOfX, playerAttackTextOfY);
             graphics2D.drawString(monsterResultText, monsterResultTextX, monsterResultTextY);
+        } else if (battleScreenState == 4) {
+            graphics2D.setFont(graphics2D.getFont().deriveFont(Font.BOLD, 30F));
+
+            String playerText = "勇者";
+            String playerHpText = "HP";
+            String playerCommandAttack = "こうげき";
+            String selectCommandAttack = ">";
+
+            int playerTextX = getXforCenteredText(playerText);
+            int playerTextY = gamePanel.getTileSize() + 12;
+
+            int playerHpTextX = gamePanel.getTileSize();
+            int playerHpTextY = gamePanel.getTileSize() * 2;
+
+            int commandAttackX = gamePanel.getTileSize();
+            int commandAttackY = gamePanel.getTileSize() * 9;
+
+            int playerSelectCommandAttackX = gamePanel.getTileSize() - 24;
+            int playerSelectCommandAttackY = gamePanel.getTileSize() * 9;
+
+            graphics2D.setColor(Color.white);
+
+            graphics2D.drawString(playerText, playerTextX, playerTextY);
+            graphics2D.drawString(playerHpText + gamePanel.getGreenSlime()[0].setAction(), playerHpTextX, playerHpTextY);
+            graphics2D.drawString(playerCommandAttack, commandAttackX, commandAttackY);
+            graphics2D.drawString(selectCommandAttack, playerSelectCommandAttackX, playerSelectCommandAttackY);
+
+            graphics2D.setFont(graphics2D.getFont().deriveFont(Font.BOLD, 30F));
+
+            String monsterText = "グリーンスライム-";
+            String four = "匹";
+
+            int monsterTextX = gamePanel.getTileSize() * 7;
+            int monsterTextY = gamePanel.getTileSize() * 9;
+
+            String monsterSelectCommand = ">";
+
+            int monsterSelectCommandX = gamePanel.getTileSize() + 255;
+            int monsterSelectCommandY = gamePanel.getTileSize() * 9;
+
+            graphics2D.setColor(Color.white);
+
+            graphics2D.drawString(monsterText + assetSetter.getNumberOfMonsters() + four, monsterTextX, monsterTextY);
+
+            if (commandNum == 0) {
+                graphics2D.drawString(monsterSelectCommand, monsterSelectCommandX, monsterSelectCommandY);
+            }
         }
     }
 

@@ -35,39 +35,16 @@ public class Entity {
 
     public int standCounter;
 
-    /**
-     * .
-     * プレイヤーの体力の最大値
-     */
-    private int playerMaxHP = 100;
-
-    /**
-     * .
-     * プレイヤーの体力
-     */
-    private int playerHP;
-
-    /**
-     * .
-     * モンスターの体力の最大値
-     */
-
-    private int monsterMaxHP = 50;
-
-    /**
-     * .
-     * モンスターの体力
-     */
-
-    private int monsterHP;
+    private static final int MIN = 0;
 
 
     public boolean collisionOn = false;
 
     public Rectangle solidArea = new Rectangle(0, 0, 48, 48);
 
-    public Entity(GamePanel gamePanel) {
-        this.gamePanel = gamePanel;
+    public Entity(GamePanel panel) {
+        this.gamePanel = panel;
+
     }
 
     public void update() {
@@ -335,96 +312,5 @@ public class Entity {
     public BufferedImage setRight2(final BufferedImage right) {
         this.right2 = right;
         return this.right2;
-    }
-
-    /**
-     * .
-     * ゲッター getPlayerMaxHp
-     *
-     * @return this.playerMaxHP;
-     */
-    public final int getPlayerMaxHP() {
-        return this.playerMaxHP;
-    }
-
-    /**
-     * .
-     * セッター setPlayerMaxHP
-     *
-     * @param maxHP = playerMaxHP;
-     * @return playerMaxHP;
-     */
-    public final int setPlayerMaxHP(final int maxHP) {
-        this.playerMaxHP = maxHP;
-        return playerMaxHP;
-    }
-
-    /**
-     * .
-     * ゲッター getPlayerHp
-     *
-     * @return this.playerHP;
-     */
-    public final int getPlayerHP() {
-        return this.playerHP;
-    }
-
-    /**
-     * .
-     * セッター setPlayerHP
-     *
-     * @param hP = playerHP;
-     * @return playerHP;
-     */
-    public final int setPlayerHP(final int hP) {
-        this.playerHP = hP;
-        return playerHP;
-    }
-
-    /**
-     * .
-     * ゲッター getMonsterMaxHP
-     *
-     * @return this.monsterMaxHP;
-     */
-    public int getMonsterMaxHP() {
-        return this.monsterMaxHP;
-    }
-
-    /**
-     * .
-     * セッター setMonsterMaxHP;
-     *
-     * @param maxHP = monsterMaxHP;
-     * @return this.monsterMaxHP;
-     */
-
-    public int setMonsterMaxHP(final int maxHP) {
-        this.monsterMaxHP = maxHP;
-        return this.monsterMaxHP;
-    }
-
-    /**
-     * .
-     * ゲッター　getMonsterHP
-     *
-     * @return this.monsterHP;
-     */
-
-    public int getMonsterHP() {
-        return this.monsterHP;
-    }
-
-    /**
-     * .
-     * セッター setMonsterHP;
-     *
-     * @param hP = monsterHP
-     * @return this.monsterHP;
-     */
-
-    public int setMonsterHP(final int hP) {
-        this.monsterHP = hP;
-        return this.monsterHP;
     }
 }
